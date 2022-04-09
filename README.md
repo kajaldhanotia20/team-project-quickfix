@@ -22,8 +22,9 @@
     </ul>
   <h2> Architecture Diagram </h2> 
     
-   ![Untitled design](https://user-images.githubusercontent.com/38569308/162557340-aecd4d32-16b0-43d9-b236-3a2bcaa4e62d.png)
- 
+  
+ ![Untitled (Presentation (169))](https://user-images.githubusercontent.com/38569308/162557427-d07c56b3-c116-4346-b508-81c58ae2ed0e.png)
+
   
   <h2> Database Diagram </h2>
   
