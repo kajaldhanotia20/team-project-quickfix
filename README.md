@@ -11,6 +11,13 @@
     2. Dhruvi Shah (015570373) <br>
     3. Kajal Dhanotia (015210884) <br>
     4. Kinjal Dhanani (015932462) <br>
+    
+  <h2> Tools and Languages</h2> 
+    <ul> Frontend - React </ul> <br>
+    <ul> Backend - Nodejs, Expressjs </ul> <br>
+    <ul> Database - MySQL, MongoDB </ul> <br>
+    <ul> API Testing - Postman </ul> <br>
+    <ul> Cloud - Amazon Web Services</ul> <br>
   <h2> Architecture Diagram </h2> 
   
   <h2> Database Diagram </h2>
