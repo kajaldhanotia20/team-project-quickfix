@@ -4,6 +4,8 @@
   
 <a href="https://github.com/gopinathsjsu/team-project-quickfix/projects/1"> Project Board
   
+  <a href="https://drive.google.com/drive/folders/1Kf5l-7zXmQqLflA1_MV4mDfEu7cSY5IK?usp=sharing"> Project Journals
+  
   <h2> Architecture Diagram </h2>
   
   <h2> Database Diagram </h2>
