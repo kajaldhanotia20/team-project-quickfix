@@ -21,6 +21,9 @@
       <li> Cloud - Amazon Web Services</li> 
     </ul>
   <h2> Architecture Diagram </h2> 
+    
+   ![Untitled design](https://user-images.githubusercontent.com/38569308/162557340-aecd4d32-16b0-43d9-b236-3a2bcaa4e62d.png)
+ 
   
   <h2> Database Diagram </h2>
   
