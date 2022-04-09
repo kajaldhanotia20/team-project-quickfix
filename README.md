@@ -5,7 +5,12 @@
 <a href="https://github.com/gopinathsjsu/team-project-quickfix/projects/1"> Project Board
   
   <a href="https://drive.google.com/drive/folders/1Kf5l-7zXmQqLflA1_MV4mDfEu7cSY5IK?usp=sharing"> Project Journals
-  
+    
+  <h2> Team Members </h2>
+    1. Dhrupa Patel (015265887)
+    2. Dhruvi Shah (015570373)
+    3. Kajal Dhanotia (015210884)
+    4. Kinjal Dhanani (015932462)
   <h2> Architecture Diagram </h2>
   
   <h2> Database Diagram </h2>
