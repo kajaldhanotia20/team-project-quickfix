@@ -13,11 +13,13 @@
     4. Kinjal Dhanani (015932462) <br>
     
   <h2> Tools and Languages</h2> 
-    <ul> Frontend - React </ul> <br>
-    <ul> Backend - Nodejs, Expressjs </ul> <br>
-    <ul> Database - MySQL, MongoDB </ul> <br>
-    <ul> API Testing - Postman </ul> <br>
-    <ul> Cloud - Amazon Web Services</ul> <br>
+    <ul> 
+      <li>Frontend - React </li> 
+      <li> Backend - Nodejs, Expressjs </li>
+      <li> Database - MySQL, MongoDB </li> 
+      <li> API Testing - Postman </li> 
+      <li> Cloud - Amazon Web Services</li> 
+    </ul>
   <h2> Architecture Diagram </h2> 
   
   <h2> Database Diagram </h2>
