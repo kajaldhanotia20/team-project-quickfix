@@ -1,10 +1,12 @@
 // const jwt = require('jsonwebtoken');
 // const secret = "CMPE273"
 
+const HotelsModel = require("../models/Hotels");
+
 
 exports.getHotelById = async function (req, res) {
     console.log("Hotel ID ", req.params)
-    var data = await HotelDashboard.findOne({_id:req.params._id});
+    var data = await HotelsModel.findOne({_id:req.params._id});
     if (data){
         res.statusCode = 200;
         res.setHeader("Content-Type","text/plain");
