@@ -5,8 +5,9 @@ const HotelsModel = require("../models/Hotels");
 
 
 exports.getHotelById = async function (req, res) {
-    console.log("Hotel ID ", req.params)
-    var data = await HotelsModel.findOne({_id:req.params._id});
+    console.log("Hotel ID ", req.query)
+    var data = await HotelsModel.find({"_id":req.query._id});
+    let date = new Date();
     if (data){
         res.statusCode = 200;
         res.setHeader("Content-Type","text/plain");
@@ -15,6 +16,6 @@ exports.getHotelById = async function (req, res) {
     else{
         res
         .status(500)
-        .send(JSON.stringify({ message: 'Something went wrong!', error: err }));
+        .send(JSON.stringify({ message: 'Something went wrong!'}));
     }
 };

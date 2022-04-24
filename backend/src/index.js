@@ -73,10 +73,12 @@ mongoose.connect(mongoConnectionURL, mongoDbOptions, (err, result) => {
 console.log(mongoose.connection.readyState);
 
 const indexRouter = require("./routes/index");
+const hotelRouter = require("./routes/hotels");
 
 console.log("dir_name " + __dirname);
 app.use(express.json());
 app.use(passport.initialize());
 // app.use(passport_res.initialize());
 app.use("/api/", indexRouter);
+app.use("/api/hotels",hotelRouter);
 //app.use(cookieParser);
