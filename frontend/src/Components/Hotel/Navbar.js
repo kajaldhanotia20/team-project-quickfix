@@ -60,14 +60,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({onTextChange, search}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [search, setSearch] = React.useState("");
   const navigate = useNavigate();
 
   function setSearchText(e){
-    setSearch(e.target.value);
+    onTextChange(e.target.value);
   }
 
   const handleOpenNavMenu = (event) => {

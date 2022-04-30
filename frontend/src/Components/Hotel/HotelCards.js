@@ -6,12 +6,27 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Navbar from "./Navbar";
 import { renderMatches } from 'react-router-dom';
 
-export default function HoteCards(search) {
-    let items = ['Item 1','Item 2','Item 3','Item 4','Item 5'];
+export default function HoteCards(searchText) {
+    const [search, setSearch] = React.useState("");
+    const initialItems = ['Item 1','Item 2','Item 3','Item 4','Item 5'];
+    
+    async function onTextChange(text){
+        await setSearch(text);
+        if(text!=""){
+            setItems(initialItems.filter(word => word.includes(text)));
+        }
+        else{
+            setItems(initialItems);
+        }
+    }
+    const [items, setItems] = React.useState(initialItems);
+
   return (
     <div>
+        <Navbar onTextChange={onTextChange} search={search}/><br/>
         <Grid container spacing={2}
                     alignItems="center"
                     style={{ minHeight: '80vh' }}>
