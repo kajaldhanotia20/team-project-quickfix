@@ -7,4 +7,5 @@ const hotelController = require("../controllers/hotelController")
 
 // auth();
 router.get("/getHotelById", hotelController.getHotelById);
+router.get("/getHotelDetails", hotelController.getHotelDetails);
 module.exports = router;

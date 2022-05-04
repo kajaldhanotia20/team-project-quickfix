@@ -19,3 +19,13 @@ exports.getHotelById = async function (req, res) {
         .send(JSON.stringify({ message: 'Something went wrong!'}));
     }
 };
+
+exports.getHotelDetails = async function (req, res){
+    console.log("called hotel details API");
+    var data = await HotelsModel.find();
+    if(data){
+        res.statusCode = 200;
+        res.setHeader("Content-Type","text/plain");
+        res.end(JSON.stringify(data));
+    }
+}

@@ -18,11 +18,8 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
-=======
->>>>>>> a8fba9be67911b443d42ee62e8db79129a971341
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.7",
@@ -36,12 +33,9 @@
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
-    "styled-components": "^5.3.5",
-=======
     "rifm": "^0.12.1",
+    "styled-components": "^5.3.5",
     "stylis": "^4.1.1",
->>>>>>> a8fba9be67911b443d42ee62e8db79129a971341
     "web-vitals": "^2.1.4"
   },
   "scripts": {

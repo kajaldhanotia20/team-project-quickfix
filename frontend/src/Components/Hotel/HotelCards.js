@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Navbar from "./Navbar";
 import axios from "axios";
+import backendServer from '../../webConfig';
 
 export default function HoteCards(searchText) {
     const [search, setSearch] = React.useState("");
@@ -17,7 +18,7 @@ export default function HoteCards(searchText) {
     React.useEffect(()=>{
         async function settingUpData(){
             await console.log("called here!");
-            var items = await axios.get("http://localhost:8000/api/hotels/getHotelById?_id=H01");
+            var items = await axios.get(`${backendServer}/api/hotels/getHotelDetails`);
             console.log("items:",items.data);
             await setInitialItems(items.data);
             await setItems(items.data);
