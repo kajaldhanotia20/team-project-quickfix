@@ -7,22 +7,34 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Navbar from "./Navbar";
-import { renderMatches } from 'react-router-dom';
+import axios from "axios";
 
 export default function HoteCards(searchText) {
     const [search, setSearch] = React.useState("");
-    const initialItems = ['Item 1','Item 2','Item 3','Item 4','Item 5'];
+    const [initialItems, setInitialItems] = React.useState([]);
+    const [items, setItems] = React.useState(initialItems);
+
+    React.useEffect(()=>{
+        async function settingUpData(){
+            await console.log("called here!");
+            var items = await axios.get("http://localhost:8000/api/hotels/getHotelById?_id=H01");
+            console.log("items:",items.data);
+            await setInitialItems(items.data);
+            await setItems(items.data);
+        }
+        settingUpData();
+    },[]);
     
     async function onTextChange(text){
+        console.log("calling text change");
         await setSearch(text);
-        if(text!=""){
+        if(text!==""){
             setItems(initialItems.filter(word => word.includes(text)));
         }
         else{
             setItems(initialItems);
         }
     }
-    const [items, setItems] = React.useState(initialItems);
 
   return (
     <div>
@@ -37,19 +49,18 @@ export default function HoteCards(searchText) {
                         component="img"
                         height="140"
                         image="/static/images/cards/contemplative-reptile.jpg"
-                        alt={item}
+                        alt={item.Hotel_name}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5">
-                        {item}
+                        {item.Hotel_name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {item.Description}
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Share</Button>
+                        <Button size="small">Select</Button>
                         <Button size="small">Learn More</Button>
                     </CardActions>
                     </Card>

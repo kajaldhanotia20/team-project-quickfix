@@ -4,6 +4,8 @@ import MyBooking from "./Components/User/myBooking";
 import SignUp from "./Components/Auth/signup";
 import Login from "./Components/Auth/login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Bookings from "./Components/Hotel/Bookings";
+import Dashboard from "./Components/Hotel/Dashboard";
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
               </Routes>
               <Routes>
                   <Route exact path="/mybooking" element={<MyBooking/>}/>
+              </Routes>
+              <Routes>
+                    <Route exact path="/dashboard" element={<Dashboard/>} />
+                    <Route exact path="/bookings" element={<Bookings/>}/>
               </Routes>
           </div>
       </Router>
