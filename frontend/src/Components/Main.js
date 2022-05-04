@@ -9,8 +9,8 @@ class Main extends Component{
             <div>
                 <Router>
                 <Routes>
-                    <Route exact path="/dashboard" element={<Dashboard/>} />
-                    <Route exact path="/bookings" element={<Bookings/>}/>
+                    {/* <Route exact path="/dashboard" element={<Dashboard/>} />
+                    <Route exact path="/bookings" element={<Bookings/>}/> */}
                 </Routes>
                 </Router>
             </div>
