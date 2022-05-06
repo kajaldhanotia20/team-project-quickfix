@@ -75,13 +75,15 @@ console.log(mongoose.connection.readyState);
 const indexRouter = require("./routes/index");
 const hotelRouter = require("./routes/hotels");
 const bookingRouter = require("./routes/bookings");
+const images = require("./util/images");
 
 console.log("dir_name " + __dirname);
 app.use(express.json());
 app.use(passport.initialize());
 // app.use(passport_res.initialize());
 app.use("/api", indexRouter);
-app.use("/api/hotels",hotelRouter);
-app.use('/api/booking',bookingRouter);
+app.use("/api/hotels", hotelRouter);
+app.use("/api/booking", bookingRouter);
+app.use("/images", images);
 
 //app.use(cookieParser);
