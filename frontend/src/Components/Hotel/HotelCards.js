@@ -94,7 +94,7 @@ export default function HoteCards(searchText) {
                             aria-describedby="modal-modal-description"
                         >
                             <Box sx={style}>
-                                <BookingModal/>
+                                <BookingModal hotel_data={item}/>
                             </Box>
                         </Modal>
                         <Button size="small">Learn More</Button>
