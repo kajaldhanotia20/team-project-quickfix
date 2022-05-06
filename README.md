@@ -37,7 +37,7 @@
  <ul>
    <li>Signup and Login Component - Kajal Dhanotia
    <li>Book, Update and Modify bookings- Kinjal Dhanani
-   <li> Hotel Dashboard- Dhrupa Patel
+   <li>Hotel Dashboard and Booking History- Dhrupa Patel
    <li> User Profile and Hotel Profile - Dhruvi Shah
     </ul>
   
