@@ -7,12 +7,26 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import axios from "axios";
+import backendServer from '../../webConfig';
 
 
 const Bookings = () => {
 
     const [search, setSearch] = React.useState("");
-    const initialItems = ['Item 1','Item 2','Item 3','Item 4','Item 5'];
+    const [initialItems, setInitialItems] = React.useState([]);
+    const [items, setItems] = React.useState(initialItems);
+
+    React.useEffect(()=>{
+        async function settingUpData(){
+            await console.log("called here!");
+            var items = await axios.get(`${backendServer}/api/booking/getBookingsByName?name=${sessionStorage.getItem("username")}`);
+            console.log("items:",items.data);
+            await setInitialItems(items.data);
+            await setItems(items.data);
+        }
+        settingUpData();
+    },[]);
     
     async function onTextChange(text){
         await setSearch(text);
@@ -23,7 +37,6 @@ const Bookings = () => {
             setItems(initialItems);
         }
     }
-    const [items, setItems] = React.useState(initialItems);
 
 return(
     <div>
@@ -37,7 +50,7 @@ return(
                 <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
                 </ListItemAvatar>
                 <ListItemText
-                primary={item}
+                primary={item.Customer_name}
                 secondary={
                     <React.Fragment>
                     <Typography
@@ -46,9 +59,9 @@ return(
                         variant="body2"
                         color="text.primary"
                     >
-                        to Scott, Alex, Jennifer
+                        {item.Hotel_name}
                     </Typography>
-                    {" — Wish I could come, but I'm out of town this…"}
+                    {`Booking Period: ${item.Booking_start_date} : ${item.Booking_end_date}`}
                     </React.Fragment>
                 }
                 />

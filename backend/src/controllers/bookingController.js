@@ -1,5 +1,6 @@
 const ReservationsModel = require("../models/Reservations");
-const mongoose = require('mongoose');
+
+
 exports.createBooking = async function (req, res) {
     console.log("__________________________________"+ req);
     const data = req.body;
@@ -39,4 +40,19 @@ exports.createBooking = async function (req, res) {
     console.error("Error in createJobPostings : " + err);
     res(null,{ response_code: 500, response_data: "Something went wrong!", err: err});
 }
+};
+
+exports.getBookingsByName = async function (req, res){
+    await console.log("Called Get Bookings API! ", req.query);
+    var data = await ReservationsModel.find({"Customer_name":req.query.name});
+    if (data){
+        res.statusCode = 200;
+        res.setHeader("Content-Type","text/plain");
+        res.end(JSON.stringify(data));
+    }
+    else{
+        res
+        .status(500)
+        .send(JSON.stringify({ message: 'Something went wrong!'}));
+    }
 }
