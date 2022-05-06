@@ -21,9 +21,6 @@ function App() {
                   <Route exact path="/" element={<Booking/>}/>
               </Routes>
               <Routes>
-                  <Route exact path="/booking" element={<Booking/>}/>
-              </Routes>
-              <Routes>
                   <Route exact path="/mybooking" element={<MyBooking/>}/>
               </Routes>
               <Routes>

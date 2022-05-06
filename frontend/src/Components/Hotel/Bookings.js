@@ -7,6 +7,12 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
 import axios from "axios";
 import backendServer from '../../webConfig';
 
@@ -20,6 +26,7 @@ const Bookings = () => {
     React.useEffect(()=>{
         async function settingUpData(){
             await console.log("called here!");
+            await sessionStorage.setItem("username","kd");
             var items = await axios.get(`${backendServer}/api/booking/getBookingsByName?name=${sessionStorage.getItem("username")}`);
             console.log("items:",items.data);
             await setInitialItems(items.data);
@@ -31,7 +38,7 @@ const Bookings = () => {
     async function onTextChange(text){
         await setSearch(text);
         if(text!=""){
-            setItems(initialItems.filter(word => word.includes(text)));
+            setItems(initialItems.filter(word => word.Hotel_name.includes(text)));
         }
         else{
             setItems(initialItems);
@@ -53,61 +60,60 @@ return(
             {items.map((item, index) => {
             return <div>
             <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                primary={item.Customer_name}
-                secondary={
-                    <React.Fragment>
-                    <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                    >
-                        {item.Hotel_name}
-                    </Typography> <br/>
-                    Booking Start Date: {getDate(item.Booking_start_date)}<br/>
-                    Booking End Date: {getDate(item.Booking_end_date)} <br/>
-                    Total Cost: ${item.Total_cost}
-                    </React.Fragment>
-                }
-                />
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                    <TableBody>
+                        <TableRow>
+                        <TableCell style={{width:'30%'}}>
+                        <img
+                            src={item.image}
+                            alt={item.Hotel_name}
+                        />
+                        {/* <ListItemAvatar>
+                            <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
+                        </ListItemAvatar> */}
+                        </TableCell>
+                        <TableCell style={{width:'35%'}} align="left">
+                            <TableRow>
+                                <ListItemText
+                                    primary={item.Hotel_name}
+                                    secondary={
+                                        <React.Fragment>
+                                        <Typography
+                                            sx={{ display: 'inline' }}
+                                            component="span"
+                                            variant="body2"
+                                            color="text.primary"
+                                        >
+                                            Booked Rooms with utilities like: Spa, Swimming Pool
+                                        </Typography> <br/>
+                                        Total Cost: ${item.Total_cost}
+                                        </React.Fragment>
+                                    }
+                                />
+                            </TableRow>
+                            <TableRow><br/></TableRow>
+                            <TableRow >
+                                <td style={{width:'50%'}}>
+                                    <b>Booking Start Date</b><br/>{getDate(item.Booking_start_date)}<br/>
+                                </td>
+                                <td style={{width:'50%'}}>
+                                    <b>Booking End Date</b><br/>{getDate(item.Booking_end_date)} <br/>
+                                </td>
+                            </TableRow>
+                        </TableCell>
+                        <TableCell align="right">
+                            Options
+                        </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer><br/>
             </ListItem>
             <Divider variant="inset" component="li" />
             </div>
             })}
         </List>
-        {/* <Grid container spacing={2}
-                    alignItems="center"
-                    style={{ minHeight: '80vh' }}>
-            {items.map((item, index) => {
-                return <Grid item xs={4}>
-                    <Card style = {{width:"100%", height:"100%"}}>
-                    <CardMedia
-                        component="img"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        alt={item}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5">
-                        {item}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Share</Button>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
-                    </Card>
-                </Grid>
-            })}
-        </Grid> */}
     </div>
 );
 }
