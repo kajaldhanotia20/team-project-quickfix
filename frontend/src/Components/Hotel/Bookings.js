@@ -38,6 +38,13 @@ const Bookings = () => {
         }
     }
 
+    function getDate(date){
+        var new_date = new Date(date);
+        var month = new_date.getMonth()
+        // return new_date.getMonth() +" - "+ new_date.getDate() +" - "+new_date.getFullYear()
+        return new_date.toDateString()
+    }
+
 return(
     <div>
         <Navbar onTextChange={onTextChange} search={search}/>
@@ -47,7 +54,7 @@ return(
             return <div>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
                 </ListItemAvatar>
                 <ListItemText
                 primary={item.Customer_name}
@@ -60,8 +67,10 @@ return(
                         color="text.primary"
                     >
                         {item.Hotel_name}
-                    </Typography>
-                    {`Booking Period: ${item.Booking_start_date} : ${item.Booking_end_date}`}
+                    </Typography> <br/>
+                    Booking Start Date: {getDate(item.Booking_start_date)}<br/>
+                    Booking End Date: {getDate(item.Booking_end_date)} <br/>
+                    Total Cost: ${item.Total_cost}
                     </React.Fragment>
                 }
                 />
