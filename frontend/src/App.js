@@ -10,6 +10,7 @@ import Profile from "./Components/Hotel/Profile";
 
 function App() {
   return (
+
     <Router>
       <div>
         <Routes>
@@ -36,6 +37,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+
   );
 }
 
