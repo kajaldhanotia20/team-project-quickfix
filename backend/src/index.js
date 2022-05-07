@@ -8,6 +8,9 @@ const cookieParser = require("cookie-parser");
 const { connect } = require("mongoose");
 const FRONTEND_URL = "http://localhost:3000";
 const passport = require("passport");
+const mysql = require('mysql');
+const { query } = require("express");
+
 // const { auth, passport } = require("./jwt/passport");
 // const {passport_res} = require('./jwt/res_passport');
 //listening
@@ -46,16 +49,36 @@ app.use(function (req, res, next) {
   res.setHeader("Cache-Control", "no-cache");
   next();
 });
-
+//mongo connection
 const { mongoConnectionURL } = require("./database/mongoConnection");
 const mongoose = require("mongoose");
-// const { initDBConnection } = require("./database/mysqlConnection");
+
 
 const mongoDbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   maxPoolSize: 100,
 };
+
+
+//mysql connection
+var connection = mysql.createConnection({
+  host     : "logindetails.cj7yotdeanl8.us-east-2.rds.amazonaws.com",
+  user     : "admin",
+  password : "Alameda393",
+  port     : "3306"
+  
+});
+
+connection.connect(function(err) {
+  if (err) {
+    console.error('Database connection failed: ' + err.stack);
+    return;
+  }
+
+  console.log('Connected to database.');
+});
+
 
 // initDBConnection().then(async () => {
 //   require("./models/CompanyReviewsModel");
@@ -74,6 +97,8 @@ console.log(mongoose.connection.readyState);
 
 const indexRouter = require("./routes/index");
 const hotelRouter = require("./routes/hotels");
+const UserRoute = require("./routes/UserRoute");
+
 
 console.log("dir_name " + __dirname);
 app.use(express.json());
@@ -81,4 +106,6 @@ app.use(passport.initialize());
 // app.use(passport_res.initialize());
 app.use("/api/", indexRouter);
 app.use("/api/hotels",hotelRouter);
+app.use("/api/UserRoute",UserRoute);
+
 //app.use(cookieParser);
