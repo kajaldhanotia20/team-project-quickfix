@@ -17,9 +17,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 
 
-const pages = ['Dashboard', 'Bookings'];
-const settings = ['Profile', 'Account', 'Logout'];
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -63,7 +60,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = ({onTextChange, search}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [pages, setPages] = React.useState([]);
+  const [settings, setSettings] = React.useState(['Logout']);
   const navigate = useNavigate();
+
+  React.useEffect(()=>{
+    if(sessionStorage.getItem("usertype")==="Customer"){
+      setPages(['Dashboard', 'Bookings']);
+      setSettings(['Profile', 'Logout']);
+    }
+  },[]);
+
 
   function setSearchText(e){
     onTextChange(e.target.value);
@@ -98,6 +105,7 @@ const Navbar = ({onTextChange, search}) => {
           >
             QuickFix
           </Typography>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -135,6 +143,7 @@ const Navbar = ({onTextChange, search}) => {
               ))}
             </Menu>
           </Box>
+
           <Typography
             variant="h6"
             noWrap
@@ -143,7 +152,9 @@ const Navbar = ({onTextChange, search}) => {
           >
             QuickFix
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {sessionStorage.getItem("usertype")==="Customer" &&
             <Search sx={{ my: 2, color: 'white', display: 'block' }}>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -154,7 +165,7 @@ const Navbar = ({onTextChange, search}) => {
                 onChange = {setSearchText}
                 defaultValue={search}
               />
-            </Search>
+            </Search>}
             {pages.map((page) => (
               <Button
                 key={page}
@@ -170,7 +181,7 @@ const Navbar = ({onTextChange, search}) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Dhrupa Patel" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={sessionStorage.getItem("username")} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

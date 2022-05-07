@@ -9,6 +9,8 @@ import Dashboard from "./Components/Hotel/Dashboard";
 import Profile from "./Components/Hotel/Profile";
 
 function App() {
+    sessionStorage.setItem("username","kd");
+    sessionStorage.setItem("usertype","Customer");
   return (
 
     <Router>

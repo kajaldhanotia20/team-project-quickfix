@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
+import {Stack, Button} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import TableRow from '@mui/material/TableRow';
@@ -25,7 +25,6 @@ const Bookings = () => {
 
     React.useEffect(()=>{
         async function settingUpData(){
-            await console.log("called here!");
             await sessionStorage.setItem("username","kd");
             var items = await axios.get(`${backendServer}/api/booking/getBookingsByName?name=${sessionStorage.getItem("username")}`);
             console.log("items:",items.data);
@@ -87,7 +86,7 @@ return(
                                         >
                                             Booked Rooms with utilities like: Spa, Swimming Pool
                                         </Typography> <br/>
-                                        Total Cost: ${item.Total_cost}
+                                        <b>Total Cost: ${item.Total_cost}</b>
                                         </React.Fragment>
                                     }
                                 />
@@ -102,8 +101,9 @@ return(
                                 </td>
                             </TableRow>
                         </TableCell>
-                        <TableCell align="right">
-                            Options
+                        <TableCell style={{width:'35%'}} align="right">
+                                <Button variant="contained" color="primary">Modify</Button> &nbsp; &nbsp;
+                                <Button variant="contained" color="warning">Cancel</Button>
                         </TableCell>
                         </TableRow>
                     </TableBody>
