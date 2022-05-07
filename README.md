@@ -38,20 +38,21 @@
 <li>can create a reservation
 <li>can modify a reservation
 <li>can filter according to needs
-<li>can select from a set of amanities available in the hotel
+<li>can select from a set of amenities available in the hotel
 <li>can checkout of the hotel room
 <li>confirm booking and select a payment method
 <li>can select a checkin and checkout date
 <li>can select a type of hotel room from all the available rooms
+<li>can delete bookings made by the user
   <h3>Admin</h3>
 <li>can check the profile of all the people who booked the hotel
 <li>can edit the hotel room features
 <li>can add more bookings
-<li>can checkout users
-<li>can change the staying period of a customer
+<!-- <li>can checkout users -->
+<!-- <li>can change the staying period of a customer -->
 <li>can add more features to each room
 <li>can logout of the admin module
-    <li>can add rooms in different location of the hotel chain </ul>
+<!--     <li>can add rooms in different location of the hotel chain </ul> -->
    
   
   <h2> Task Divisions</h2> 
@@ -70,7 +71,8 @@
 <li> Communication: We conducted in-person meetings atleast once a week and updated each other about our individual components. We ensured transparent and effective communication to update about our timelines and committments.
 <li> Feedback: After every sprint cycle, we conducted a meeting solely for the purpose of feedback. We demonstrated our components to each other and asked/gave feedback to others' components on what better can be done.
 <li> Simplicity: The team was always working towards delivering products with absolutely necessary features though which we were able to omit unnecessary  items and code. This helped to keep out code very clean and organised. Even for documenting the progress and maintaining the repository, we approached in a fairly simple manner.
-     </ul>
+<li> Courage: The team always reports about progress and estimates for the tasks they are working on. We always adapts to the changes whenever it happens.
+  </ul>
     
     
   
