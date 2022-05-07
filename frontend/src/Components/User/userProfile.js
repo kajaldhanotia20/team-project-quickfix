@@ -20,6 +20,8 @@ export default function Profile() {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [image, setImage] = useState("");
+  const [rewards, setRewards] = useState("");
+  const [loyalty, setLoyalty] = useState("");
 
   const singleFileUploadHandler = () => {
     setTrial(selectedFile[0]);
@@ -80,6 +82,8 @@ export default function Profile() {
         setAddress(data.Customer_Address);
         setPhoneNumber(data.Phone_Number);
         setImage(data.Profile_Image);
+        setRewards(data.Rewards);
+        setLoyalty(data.Customer_Loyalty);
       });
   }, []);
 
@@ -193,6 +197,20 @@ export default function Profile() {
                           setPhoneNumber(e.target.value);
                         }}
                       />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>
+                        <Box sx={{ fontWeight: "bold", m: 1 }}>
+                          Rewards: {rewards}
+                        </Box>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>
+                        <Box sx={{ fontWeight: "bold", m: 1 }}>
+                          Loyalty: {loyalty}
+                        </Box>
+                      </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
