@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-sdk": "^2.1130.0",
     "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "cjs": "^0.0.11",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

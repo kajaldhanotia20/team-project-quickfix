@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
 
-
 const useStyles= makeStyles({
     button1: {
         width:200,
@@ -25,7 +24,7 @@ export default function Login() {
     const history = useNavigate();
 
     function login(){
-        fetch(`http://localhost:4001/user/login`,{
+        fetch(`http://localhost:8000/api/UserRoute/login`,{
             method:'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify({
@@ -34,7 +33,7 @@ export default function Login() {
             })})
             .then(res => res.json())
         .then(data => {setError(data.message)
-            history.push('/landing')
+            history('/')
         })
     }
 
@@ -52,13 +51,10 @@ export default function Login() {
             justify="center"
             style={{ minHeight: '100vh' }}
             >
-
             <Grid item xs={3}>
-            <img src="https://cdn-icons-png.flaticon.com/512/235/235889.png" alt='' width="200" height="200" />
+            <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="120" />
             <br/>
             </Grid>  
-             
-            
             <Grid item xs={3}> 
             <Typography variant="h4">Welcome back</Typography>
             </Grid>
@@ -86,7 +82,7 @@ export default function Login() {
             </Grid>
             <Link to='/signup'>
             <Typography variant='overline'>
-                New to Uber? Create an account.
+                New to Hotels.com? Create an account.
             </Typography>
             </Link>
         </Grid> 

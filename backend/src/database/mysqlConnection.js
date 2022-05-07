@@ -1,10 +1,11 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host     : "logindetails.cj7yotdeanl8.us-east-2.rds.amazonaws.com",
   user     : "admin",
   password : "Alameda393",
-  port     : "3306"
+  port     : "3306",
+  database : "sys"
 
   
 });
@@ -21,3 +22,4 @@ connection.connect(function(err) {
 connection.end();
 
 module.exports = connection;
+

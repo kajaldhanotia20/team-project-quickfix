@@ -194,9 +194,7 @@ export default function Profile() {
                         }}
                       />
                     </Grid>
-                    <Grid item xs={12}>
-                      <Typography>Amenities :</Typography>
-                    </Grid>
+
                     <Grid item xs={12}>
                       <input
                         type="file"

@@ -7,9 +7,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Bookings from "./Components/Hotel/Bookings";
 import Dashboard from "./Components/Hotel/Dashboard";
 import Profile from "./Components/Hotel/Profile";
-import UserProfile from "./Components/User/UserProfile";
+import UserProfile from "./Components/User/userProfile";
 
 function App() {
+  sessionStorage.setItem("username", "kd");
+  sessionStorage.setItem("usertype", "Customer");
   return (
     <Router>
       <div>

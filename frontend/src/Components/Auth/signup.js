@@ -8,8 +8,7 @@ import  {makeStyles}  from '@material-ui/core/';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
-import {Redirect} from 'react-router';
-
+import {Navigate} from 'react-router';
 
 
 const useStyles= makeStyles({
@@ -30,8 +29,10 @@ export default function Signup() {
     const history = useNavigate();
     let redirectvar =''
 
+
+
     function signup(){
-        fetch(`http://localhost:8000/user/signup`,{
+        fetch(`http://localhost:8000/api/UserRoute/signup`,{
             method:'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify({
@@ -45,7 +46,7 @@ export default function Signup() {
         .then(data => {
             // console.log(data)
             setError(data.message)})
-            history.push("/login")
+            history("/login")
     }
 
 
@@ -61,12 +62,10 @@ export default function Signup() {
             justify="center"
             style={{ minHeight: '100vh' }}
             >
-
             <Grid item xs={3}>
-            <img src="https://cdn-icons-png.flaticon.com/512/235/235889.png" alt='' width="200" height="200" />
+            <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="120" />
             <br/>
             </Grid>  
-             
             <Grid item xs={3}> 
             <Typography variant="h4">Let's get started.</Typography>
             <Typography color="red">{error}</Typography>
