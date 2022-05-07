@@ -5,7 +5,7 @@ var router = express.Router();
 // const { checkAuth } = require("../Utils/passport");
 
 // auth();
-router.get("/", function (res, res) {
+router.get("/", function (req, res) {
     res.send("Hello from Indeed backend!");
 });
 

@@ -3,17 +3,38 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Navbar from "./Navbar";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import backendServer from '../../webConfig';
+import {Button, Modal} from "@mui/material";
+import Box from "@mui/material/Box";
+import BookingModal from '../Modules/bookingModal';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50%',
+    height: '80%',
+    bgcolor: 'background.paper',
+    // border: '2px solid #000',
+    // boxShadow: 24,
+    // p: 4,
+};
 
 export default function HoteCards(searchText) {
     const [search, setSearch] = React.useState("");
     const [initialItems, setInitialItems] = React.useState([]);
     const [items, setItems] = React.useState(initialItems);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    var navigate = useNavigate();
+
 
     React.useEffect(()=>{
         async function settingUpData(){
@@ -27,14 +48,18 @@ export default function HoteCards(searchText) {
     },[]);
     
     async function onTextChange(text){
-        console.log("calling text change");
         await setSearch(text);
         if(text!==""){
-            setItems(initialItems.filter(word => word.includes(text)));
+            setItems(initialItems.filter(word => word.Hotel_name.includes(text)));
         }
         else{
             setItems(initialItems);
         }
+    }
+
+    async function loadBookModal(){
+        console.log("called here on click!")
+        navigate("/booking");
     }
 
   return (
@@ -49,7 +74,7 @@ export default function HoteCards(searchText) {
                     <CardMedia
                         component="img"
                         height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        image={item.Profile_image}
                         alt={item.Hotel_name}
                     />
                     <CardContent>
@@ -61,7 +86,17 @@ export default function HoteCards(searchText) {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Select</Button>
+                        <Button size="small" onClick={handleOpen}>Select</Button>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <BookingModal hotel_data={item}/>
+                            </Box>
+                        </Modal>
                         <Button size="small">Learn More</Button>
                     </CardActions>
                     </Card>
