@@ -57,9 +57,9 @@ export default function HoteCards(searchText) {
         }
     }
 
-    async function loadBookModal(){
-        console.log("called here on click!")
-        navigate("/booking");
+    async function loadProfile(id){
+        await sessionStorage.setItem("Hotel_Id",id);
+        await navigate("/bookings");
     }
 
   return (
@@ -97,7 +97,7 @@ export default function HoteCards(searchText) {
                                 <BookingModal hotel_data={item}/>
                             </Box>
                         </Modal>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small" onClick={()=>loadProfile(item._id)}>Learn More</Button>
                     </CardActions>
                     </Card>
                 </Grid>
