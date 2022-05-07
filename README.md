@@ -31,8 +31,29 @@
 ![202_DB_Design](https://user-images.githubusercontent.com/38569308/162551993-ff2ee9c3-0659-4f00-b148-e3ce32d38d81.png)
 
   <h2> Feature Set</h2> 
+  <ul>  <h3> Customer</h3>
+<li>can register for the hotel
+<li>can login for the hotel
+<li>search for hotel rooms from chains of the hotel
+<li>can create a reservation
+<li>can modify a reservation
+<li>can filter according to needs
+<li>can select from a set of amanities available in the hotel
+<li>can checkout of the hotel room
+<li>confirm booking and select a payment method
+<li>can select a checkin and checkout date
+<li>can select a type of hotel room from all the available rooms
+  <h3>Admin</h3>
+<li>can check the profile of all the people who booked the hotel
+<li>can edit the hotel room features
+<li>can add more bookings
+<li>can checkout users
+<li>can change the staying period of a customer
+<li>can add more features to each room
+<li>can logout of the admin module
+    <li>can add rooms in different location of the hotel chain </ul>
    
-    
+  
   <h2> Task Divisions</h2> 
  <ul>
    <li>Signup and Login Component - Kajal Dhanotia
