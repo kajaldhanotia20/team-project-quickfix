@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {
     Button,
-    Container,
+    Container, Link,
     Paper,
     Stack,
     Table,
@@ -16,7 +16,8 @@ export default function MyBooking() {
     return(
         <Container>
             Your Bookings
-            <TableContainer sx={{maxWidth:'50%'}} component={Paper}>
+            <br/>
+            <TableContainer sx={{maxWidth:'70%'}} component={Paper}>
                 <Table  aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -35,10 +36,12 @@ export default function MyBooking() {
                             <TableCell>Check-in</TableCell>
                             <TableCell>Checkout</TableCell>
                             <TableCell>Amount</TableCell>
-                            <TableCell><Stack>
-                                <Button variant="outlined">Modify</Button>
-                                <Button variant="outlined">Cancel</Button>
-                            </Stack></TableCell>
+                            <TableCell>
+                                <Stack>
+                                    <Button variant="outlined" href="/booking" >Modify</Button>
+                                    <Button variant="outlined">Cancel</Button>
+                                </Stack>
+                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

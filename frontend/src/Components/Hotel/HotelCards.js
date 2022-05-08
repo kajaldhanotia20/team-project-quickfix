@@ -18,8 +18,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '50%',
-    height: '80%',
+    width: '60%',
+    height: '90%',
     bgcolor: 'background.paper',
     // border: '2px solid #000',
     // boxShadow: 24,
@@ -57,9 +57,9 @@ export default function HoteCards(searchText) {
         }
     }
 
-    async function loadProfile(id){
-        await sessionStorage.setItem("Hotel_Id",id);
-        await navigate("/bookings");
+    async function loadBookModal(){
+        console.log("called here on click!")
+        navigate("/booking");
     }
 
   return (
@@ -97,7 +97,7 @@ export default function HoteCards(searchText) {
                                 <BookingModal hotel_data={item}/>
                             </Box>
                         </Modal>
-                        <Button size="small" onClick={()=>loadProfile(item._id)}>Learn More</Button>
+                        <Button size="small">Learn More</Button>
                     </CardActions>
                     </Card>
                 </Grid>
