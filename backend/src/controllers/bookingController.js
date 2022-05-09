@@ -1,7 +1,7 @@
 const ReservationsModel = require("../models/Reservations");
 const mongoose = require('mongoose');
+const HotelsModel = require("../models/Hotels");
 exports.createBooking = async function (req, res) {
-    console.log("__________________________________"+ req.body.toString());
     const data = req.body;
     try{
         let newBooking = new ReservationsModel({
@@ -30,9 +30,6 @@ exports.createBooking = async function (req, res) {
 
                 res.status(200).setHeader("Content-Type", "text/plain").end(JSON.stringify(data));
 
-                // res.statusCode = 200;
-                // res.setHeaders("Content-Type", "text/plain");
-                // res.send(JSON.stringify(data));
             }
 
     }catch(err){
@@ -44,7 +41,6 @@ exports.createBooking = async function (req, res) {
 exports.deleteBooking = async function (req, res) {
     const data= req.body;
     const id= data.id;
-    console.log("id________"+ id)
     try{
         ReservationsModel.findByIdAndDelete(id,function (err, docs) {
             if (err) {
@@ -88,4 +84,39 @@ exports.getBookingsByName = async function (req, res){
         .status(500)
         .send(JSON.stringify({ message: 'Something went wrong!'}));
     }
+}
+
+
+
+exports.updateBooking = async function (req, res) {
+    //req.params.id to access variables passed in path  for eg. /updateHotelById/1      req.params.id = 1
+    console.log("Update hotel Function");
+    console.log("req body: ", req.body);
+    // var data = await HotelsModel.find({ _id: req.query._id });
+    console.log(req.query._id);
+    var data = req.body;
+    try {
+        await ReservationsModel.findOneAndUpdate(
+            {
+                _id: req.query._id,
+            },
+            {
+                Hotel_id: data.Hotel_id,
+                Customer_id: data.Customer_id,
+                Hotel_name: data.Hotel_name,
+                Customer_name: data.Customer_name,
+                Rate_per_day: data.Rate_per_day,
+                Booking_period_days: data.Booking_period_days,
+                Booking_start_date: data.Booking_start_date,
+                Booking_end_date: data.Booking_end_date,
+                Total_cost: data.Total_cost,
+                Created_at: data.Created_at,
+                Hotel_image: data.Hotel_image
+            }
+        );
+        res.send("Updated successfully")
+    }catch (e) {
+        console.log(e);
+    }
+
 }
