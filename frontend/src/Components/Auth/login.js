@@ -22,8 +22,9 @@ export default function Login() {
     const [password, setPassword]= useState('')
     const [error, setError]= useState('');
     const history = useNavigate();
-
-    function login(){
+    // dhruvi@gmail.com
+    // pas:12345
+    async function login(){
         fetch(`http://localhost:8000/api/UserRoute/login`,{
             method:'POST',
             headers:{"Content-type": "application/json"},
@@ -32,7 +33,9 @@ export default function Login() {
                 password:password
             })})
             .then(res => res.json())
-        .then(data => {setError(data.message)
+        .then(data => {
+            console.log("data ",data);
+            setError(data.message)
             history('/')
         })
     }

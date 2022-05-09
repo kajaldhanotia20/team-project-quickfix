@@ -103,6 +103,7 @@ const UserRoute = require("./routes/UserRoute");
 
 const bookingRouter = require("./routes/bookings");
 const images = require("./util/images");
+const userRouter = require("./routes/user");
 
 
 console.log("dir_name " + __dirname);
@@ -120,6 +121,6 @@ app.use("/api", indexRouter);
 app.use("/api/hotels", hotelRouter);
 app.use("/api/booking", bookingRouter);
 app.use("/images", images);
-
+app.use("/api/users", userRouter);
 //app.use(cookieParser);
 
