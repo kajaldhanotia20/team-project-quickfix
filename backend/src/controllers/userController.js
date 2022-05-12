@@ -20,14 +20,13 @@ const connection = mysql.createConnection({
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
-  console.log(name, password)
+  const phone = req.body.phone;
+  console.log(name, password,phone)
   bcrypt.hash(password, saltRounds, (err, hash)=>{
-    connection.query("INSERT INTO CUSTOMER_DETAILS (Cust_Name,Cust_Password, Cust_Email) VALUES (?,?,?)",[name, hash, email], async function(error, results){
+    connection.query("INSERT INTO Login_Details (User_name,User_password, id, Phone_number) VALUES (?,?,?,?)",[name, hash, email, phone], async function(error, results){
       if(error){
         console.log(error);
-        // res.writeHead(200, {
-        //   'Content-Type':'text/plain'
-        // });
+        
         if(error.code=1062){
           res.send({message:"Email already exists. Please login."})
         }else{
@@ -44,27 +43,25 @@ const connection = mysql.createConnection({
   
 //User Login
 exports.login = async function(req,res) {
-  
+
   const email = req.body.email;
   const password = req.body.password;
   console.log(email, password)
-  // connection.query("SELECT * FROM USER WHERE Cust_ID = '"+{username}+"'",
-  connection.query("SELECT * FROM CUSTOMER_DETAILS WHERE Cust_Email = ?;",
-    email, 
-  function(error, results){
+
+  connection.query("SELECT * FROM Login_Details WHERE id = ?;", email, function(error, results){
     if(error){
       console.log('aaa'+error)
       res.send({error:error})
     }
     console.log(results.length)
       if(results.length>0){
-        console.log(password, '-----',results[0].Cust_Password)
-        bcrypt.compare(password, results[0].Cust_Password,(err,response)=>{
+        console.log(password, '-----',results[0].User_password)
+        bcrypt.compare(password, results[0].User_password,(err,response)=>{
           if(response){
             req.session.user= results
             res.send(results)
           }else{
-            console.log(results)
+            console.log(response)
             res.send({message:"Wrong username/password!"})
           }
         });
@@ -74,6 +71,6 @@ exports.login = async function(req,res) {
             }
     
   });
-}
+} 
 
     

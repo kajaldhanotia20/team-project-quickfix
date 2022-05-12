@@ -25,7 +25,8 @@ export default function Signup() {
     const [name, setName]= useState('')
     const [password, setPassword]= useState('')
     const [error, setError]= useState('');
-    const [email, setEmail]= useState('')
+    const [email, setEmail]= useState('');
+    const [phone, setPhone]=useState('');
     const history = useNavigate();
     let redirectvar =''
 
@@ -38,7 +39,8 @@ export default function Signup() {
             body: JSON.stringify({
                 name:name,
                 password:password,
-                email: email
+                email: email,
+                phone: phone,
             })})
             .then(res =>
                 // console.log(JSON.stringify(res))
@@ -75,15 +77,19 @@ export default function Signup() {
             </Grid>
             <Box sx={{width:500}} >
              <Grid item > 
-             <TextField fullWidth id="outlined-basic" label="Name" 
+             <TextField required type="text" fullWidth id="outlined-basic" label="Name" 
              onChange={(e)=>{setName(e.target.value)}}
              variant="outlined" />
             <br/><br/>
-            <TextField fullWidth id="outlined-basic" label="Email ID"
+            <TextField required type="email" fullWidth id="outlined-basic" label="Email ID"
             onChange={(e)=>{setEmail(e.target.value)}}
              variant="outlined" />
             <br/><br/>
-            <TextField fullWidth id="outlined-basic" 
+            <TextField required type="number" fullWidth id="outlined-basic" label="Phone Number"
+            onChange={(e)=>{setPhone(e.target.value)}}
+             variant="outlined" />
+              <br/><br/>
+            <TextField required fullWidth id="outlined-basic" 
             type="password" label="Password" 
             onChange={(e)=>{setPassword(e.target.value)}}
             variant="outlined" />
