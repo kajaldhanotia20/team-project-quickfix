@@ -16,7 +16,6 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -60,14 +59,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = ({onTextChange, search}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [pages, setPages] = React.useState([]);
-  const [settings, setSettings] = React.useState(['Logout']);
+  const [pages, setPages] = React.useState(['Bookings']);
+  const [settings, setSettings] = React.useState(['Profile','Logout']);
   const navigate = useNavigate();
 
   React.useEffect(()=>{
     if(sessionStorage.getItem("usertype")==="Customer"){
       setPages(['Dashboard', 'Bookings']);
-      setSettings(['Profile', 'Logout']);
     }
   },[]);
 
@@ -92,6 +90,11 @@ const Navbar = ({onTextChange, search}) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  async function redirectComponent(page){
+    navigate("/profile");
+
+  }
 
   return (
     <AppBar position="relative">
@@ -202,7 +205,7 @@ const Navbar = ({onTextChange, search}) => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Button textAlign="center" onClick={()=>redirectComponent(setting)} value={setting}>{setting}</Button>
                 </MenuItem>
               ))}
             </Menu>

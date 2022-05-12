@@ -1,22 +1,53 @@
+// const jwt = require('jsonwebtoken');
+// const secret = "CMPE273"
+
+const UserModel = require("../models/Customer_Details");
+
+exports.getUserById = async function (req, res) {
+  console.log("User ID ", req.query);
+  var data = await UserModel.find({ _id: req.query._id });
+  let date = new Date();
+  if (data) {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end(JSON.stringify(data));
+  } else {
+    res.status(500).send(JSON.stringify({ message: "Something went wrong!" }));
+  }
+};
+
+exports.updateUserById = async function (req, res) {
+  console.log("Update User Function");
+  console.log("req body: ", req.body);
+  var data = await UserModel.find({ _id: req.query._id });
+  // console.log(data);
+  await UserModel.findOneAndUpdate(
+    {
+      _id: req.query._id,
+    },
+    {
+      $set: req.body,
+    }
+  );
+
+  return res.send({ message: "Profile Updated" });
+};
 const express = require("express");
 var router = express.Router();
 const mysql = require("mysql");
-const bcrypt = require('bcryptjs');
-const saltRounds=10;
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
 
 const connection = mysql.createConnection({
-    host     : "logindetails.cj7yotdeanl8.us-east-2.rds.amazonaws.com",
-    user     : "admin",
-    password : "Alameda393",
-    port     : "3306",
-    database : "sys"
-   
-  })
-      
-  
-  //New user Register
-  exports.signup = async function(req,res) {
-    
+  host: "logindetails.cj7yotdeanl8.us-east-2.rds.amazonaws.com",
+  user: "admin",
+  password: "Alameda393",
+  port: "3306",
+  database: "sys",
+});
+
+//New user Register
+exports.signup = async function (req, res) {
   const name = req.body.name;
   const password = req.body.password;
   const email = req.body.email;
@@ -32,15 +63,11 @@ const connection = mysql.createConnection({
         }else{
           res.send({message:error.message})
         }
-      }else{
-        console.log(JSON.stringify(results))
-        res.send({message:"Success"})
       }
     });
-  })
-  };
+  });
+};
 
-  
 //User Login
 exports.login = async function(req,res) {
 
