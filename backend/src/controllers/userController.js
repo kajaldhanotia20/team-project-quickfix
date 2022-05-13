@@ -52,7 +52,6 @@ exports.signup = async function (req, res) {
   const password = req.body.password;
   const email = req.body.email;
   const phone = req.body.phone;
-  console.log(name, password,phone)
   bcrypt.hash(password, saltRounds, (err, hash)=>{
     connection.query("INSERT INTO Login_Details (User_name,User_password, id, Phone_number) VALUES (?,?,?,?)",[name, hash, email, phone], async function(error, results){
       if(error){
@@ -75,23 +74,23 @@ exports.login = async function(req,res) {
   const password = req.body.password;
   console.log(email, password)
 
-  connection.query("SELECT * FROM Login_Details WHERE id = ?;", email, function(error, results){
+  connection.query("SELECT * FROM Login_Details WHERE id = ?;", email, async function(error, results){
     if(error){
       console.log('aaa'+error)
       res.send({error:error})
     }
-    console.log(results.length)
+    console.log(results[0])
       if(results.length>0){
-        console.log(password, '-----',results[0].User_password)
-        bcrypt.compare(password, results[0].User_password,(err,response)=>{
-          if(response){
+        const encryptedPassword = await bcrypt.compare(
+          password,
+          results[0].User_password
+        );
+        if(encryptedPassword){
             req.session.user= results
             res.send(results)
           }else{
-            console.log(response)
             res.send({message:"Wrong username/password!"})
           }
-        });
       }else{
         console.log('eee')
         res.send({message:"User doesn't exist!"})
