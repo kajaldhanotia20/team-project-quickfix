@@ -94,10 +94,12 @@ export default function HoteCards(searchText) {
                             aria-describedby="modal-modal-description"
                         >
                             <Box sx={style}>
-                                <BookingModal hotel_data={item}/>
+                                <BookingModal BookingDetails={item}/>
                             </Box>
                         </Modal>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small" onClick={()=>{
+                            sessionStorage.setItem("hotel_id",item._id);
+                            navigate("/profile")}}>Learn More</Button>
                     </CardActions>
                     </Card>
                 </Grid>

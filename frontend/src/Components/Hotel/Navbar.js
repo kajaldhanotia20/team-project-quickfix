@@ -92,7 +92,7 @@ const Navbar = ({onTextChange, search}) => {
   };
 
   async function redirectComponent(page){
-    navigate("/profile");
+    navigate("/"+page);
 
   }
 
