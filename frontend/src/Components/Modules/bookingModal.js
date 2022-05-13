@@ -31,7 +31,7 @@ export default function BookingModal({BookingDetails}) {
     const [cost, setCost] = React.useState(0);
     const [roomCost, setRoomCost] = React.useState(0);
     const [roomtype, setRoomType] = React.useState('');
-    const mapping=  BookingDetails.Room_type_rate_mapping;
+    const [mapping, setMapping] = React.useState('');
     const handleCostChange = (event, newCost) => {
         setCost(newCost);
     };
@@ -57,7 +57,9 @@ export default function BookingModal({BookingDetails}) {
 
     React.useEffect(()=>{
         console.log({BookingDetails})
-    },[]);
+        setMapping(BookingDetails.Room_type_rate_mapping);
+        console.log(mapping)
+    },[BookingDetails]);
 
     const createBooking = () => {
         console.log(booking)
@@ -66,7 +68,6 @@ export default function BookingModal({BookingDetails}) {
             Customer_id: "c01",//BookingDetails.cust_id,
             Hotel_name: BookingDetails.Hotel_name,
             Customer_name: "C01",//BookingDetails.cust_name,
-
             Booking_period_days: endDate-startDate,
             Booking_start_date: startDate,
             Booking_end_date: endDate,
@@ -80,9 +81,12 @@ export default function BookingModal({BookingDetails}) {
             console.log(result);
             if (result.status === 200) {
                 return "Success"
+
+
             }
         })
     }
+
 
 
     return(
