@@ -8,6 +8,7 @@ import  {makeStyles}  from '@material-ui/core/';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
+import { styled } from '@mui/material/styles';
 
 const useStyles= makeStyles({
     button1: {
@@ -16,6 +17,12 @@ const useStyles= makeStyles({
         fontSize: 20
       }
 })
+
+const ColorButton = styled(Button)(({ theme }) => ({
+    
+    backgroundColor: 'black',
+  
+}));
 
 export default function Login() {
     const [email, setEmail]= useState('')
@@ -82,10 +89,11 @@ export default function Login() {
             variant="outlined" />
             </Grid>
             </Box>
+            <br></br>
             <Grid item>
-            <Button onClick={login} className={Classes.button1} variant="contained" color="primary">
+            <ColorButton onClick={login} className={Classes.button1} variant="contained" color="primary">
                 Login
-            </Button>
+            </ColorButton>
             </Grid>
             <Link to='/signup'>
             <Typography variant='overline'>

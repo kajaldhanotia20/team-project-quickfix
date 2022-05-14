@@ -5,7 +5,7 @@ import Logo from '../../logo.png'
 import '../../App.css'
 import { Container } from '@material-ui/core'
 
-export default function LandingPage() {
+export default function Booking() {
 
    
     return (
