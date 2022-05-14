@@ -61,7 +61,7 @@ const Bookings = () => {
 
     async function Modify(hotel_id, id){
         console.log("id: ",id);
-        var details = await axios.get(`${backendServer}/api/hotels/getHotelById?id=${hotel_id}`)
+        var details = await axios.get(`${backendServer}/api/hotels/getHotelById?_id=${hotel_id}`)
         details.data[0]["booking_id"] = await id;
         console.log("details ",details.data);
         await setHotelDetails(details.data);

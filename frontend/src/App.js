@@ -44,7 +44,7 @@ function App() {
           <Route exact path="/userprofile" element={<UserProfile />} />
         </Routes>
         <Routes>
-          <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/logout" element={<Booking />} />
         </Routes>
         <Routes>
           <Route exact path="/hoteldetails" element={<HotelDetails />} />

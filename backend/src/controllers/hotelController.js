@@ -5,7 +5,7 @@ const HotelsModel = require("../models/Hotels");
 
 exports.getHotelById = async function (req, res) {
   console.log("Hotel ID ", req.query);
-  var data = await HotelsModel.find({ _id: req.query.id });
+  var data = await HotelsModel.find({ _id: req.query._id });
   let date = new Date();
   if (data) {
     console.log(data);
