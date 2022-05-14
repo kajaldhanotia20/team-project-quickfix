@@ -106,7 +106,10 @@ return(
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            Booked Rooms with utilities like: Spa, Swimming Pool
+                                            Booked Rooms with utilities like:
+                                            {/* {items..map((item,index)=>{
+                                                return <li key={index}>{item}</li>
+                                            })} */}
                                         </Typography> <br/>
                                         <b>Total Cost: ${item.Total_cost}</b>
                                         </React.Fragment>

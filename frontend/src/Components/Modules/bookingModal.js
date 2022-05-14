@@ -23,8 +23,6 @@ function valuetext(value) {
     return `${value}$`;
 }
 
-
-
 export default function BookingModal({BookingDetails}) {
     let booking= {BookingDetails};
     const [value, setValue] = React.useState(null);
@@ -127,9 +125,9 @@ export default function BookingModal({BookingDetails}) {
         
         let data = {
             Hotel_id : BookingDetails._id,
-            Customer_id: "c01",//BookingDetails.cust_id,
+            Customer_id: sessionStorage.getItem("userid"),//BookingDetails.cust_id,
             Hotel_name: BookingDetails.Hotel_name,
-            Customer_name: "C01",//BookingDetails.cust_name,
+            Customer_name: sessionStorage.getItem("username"),//BookingDetails.cust_name,
             Booking_period_days:getDate(endDate)- getDate(startDate),
             Booking_start_date: startDate,
             Booking_end_date: endDate,
