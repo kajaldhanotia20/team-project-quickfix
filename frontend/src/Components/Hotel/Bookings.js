@@ -33,6 +33,16 @@ const Bookings = () => {
         }
         settingUpData();
     },[]);
+
+    async function DeleteBooking(id){
+        // let data ={
+        //     id: "4"
+        // }
+        console.log(id)
+        var res = await axios.post(`${backendServer}/api/booking/deleteBooking?id=${id}`);
+        console.log(res);
+
+    }
     
     async function onTextChange(text){
         await setSearch(text);
@@ -103,7 +113,7 @@ return(
                         </TableCell>
                         <TableCell style={{width:'35%'}} align="right">
                                 <Button variant="contained" color="primary">Modify</Button> &nbsp; &nbsp;
-                                <Button variant="contained" color="warning">Cancel</Button>
+                                <Button variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</Button>
                         </TableCell>
                         </TableRow>
                     </TableBody>
