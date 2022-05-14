@@ -5,6 +5,7 @@ const HotelsModel = require("../models/Hotels");
 
 exports.createBooking = async function (req, res) {
     const data = req.body;
+    console.log(data);
     try{
         let newBooking = new ReservationsModel({
             Hotel_id : data.Hotel_id,
@@ -18,6 +19,9 @@ exports.createBooking = async function (req, res) {
             Total_cost: data.Total_cost,
             Created_at: data.Created_at,
             image: data.Hotel_image,
+            Guests: data.Guests,
+            Rooms: data.Rooms,
+            RoomType: data.RoomType,
             Amenities: data.Amenities,
             // _id : mongoose.Schema.ObjectId
             });
@@ -134,6 +138,9 @@ exports.updateBooking = async function (req, res) {
                 Total_cost: data.Total_cost,
                 Created_at: data.Created_at,
                 image: data.Hotel_image,
+                Guests: data.Guests,
+                Rooms: data.Rooms,
+                RoomType: data.RoomType,
                 Amenities: data.Amenities,
                 }
         );

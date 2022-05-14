@@ -19,6 +19,7 @@ import Box from "@mui/material/Box";
 import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
 import backendServer from '../../webConfig';
+import BookingModalModify from "../Modules/bookingModal_Modify";
 
 const style = {
     position: 'absolute',
@@ -40,6 +41,7 @@ const Bookings = () => {
     const [items, setItems] = React.useState(initialItems);
     const [deleteFlag, setDeleteFlag] = React.useState(false);
     const [hotelDetails, setHotelDetails] = React.useState({});
+    const [bookingDetails, setBookingDetails] = React.useState({});
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -59,13 +61,10 @@ const Bookings = () => {
         settingUpData();
     },[deleteFlag]);
 
-    async function Modify(hotel_id, id){
-        console.log("id: ",id);
-        var details = await axios.get(`${backendServer}/api/hotels/getHotelById?_id=${hotel_id}`)
-        details.data[0]["booking_id"] = await id;
-        console.log("details ",details.data);
+    async function Modify(item){
+        var details = await axios.get(`${backendServer}/api/hotels/getHotelById?_id=${item.Hotel_id}`)
         await setHotelDetails(details.data);
-        await sessionStorage.setItem("type","Modify");
+        await setBookingDetails(item);
         setOpen(true);
     }
 
@@ -185,7 +184,7 @@ return(
                         </TableCell>
                         {sessionStorage.getItem("usertype")==="Customer" &&
                         <TableCell style={{width:'35%'}} align="right">
-                                <Button variant="contained" color="primary" onClick={()=>{Modify(item.Hotel_id,item._id)}}>Modify</Button> &nbsp; &nbsp;
+                                <Button variant="contained" color="primary" onClick={()=>{Modify(item)}}>Modify</Button> &nbsp; &nbsp;
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
@@ -193,7 +192,7 @@ return(
                                     aria-describedby="modal-modal-description"
                                 >
                                     <Box sx={style}>
-                                        <BookingModal BookingDetails={hotelDetails[0]} />
+                                        <BookingModalModify BookingDetails = {bookingDetails} HotelDetails={hotelDetails[0]} />
                                     </Box>
                                 </Modal>
 

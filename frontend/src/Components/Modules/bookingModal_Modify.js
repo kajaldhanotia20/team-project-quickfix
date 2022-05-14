@@ -30,20 +30,21 @@ function valuetext(value) {
   return `${value}$`;
 }
 
-export default function BookingModal({ BookingDetails }) {
+export default function BookingModalModify({ BookingDetails, HotelDetails }) {
   let booking = { BookingDetails };
+  let hoteldetails = {HotelDetails};
   const [value, setValue] = React.useState(null);
   const history = useNavigate();
-  const [startDate, setStartDate] = React.useState(null);
+  const [startDate, setStartDate] = React.useState(BookingDetails.Booking_start_date);
   const [days, setDays] = React.useState(0);
-  const [endDate, setEndDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(BookingDetails.Booking_end_date);
   const [ratingValue, setRatingValue] = React.useState(2);
-  const [guests, setGuests] = React.useState(2);
-  const [rooms, setRooms] = React.useState(1);
-  const [cost, setCost] = React.useState(0);
+  const [guests, setGuests] = React.useState(Number(BookingDetails.Guests));
+  const [rooms, setRooms] = React.useState(Number(BookingDetails.Rooms));
+  const [cost, setCost] = React.useState(Number(BookingDetails.Total_cost));
   // sessionStorage.setItem("cost", 0);
   const [roomCost, setRoomCost] = React.useState(0);
-  const [roomtype, setRoomType] = React.useState("cd");
+  const [roomtype, setRoomType] = React.useState(BookingDetails.RoomType);
   const [mapping, setMapping] = React.useState("");
   const [Breakfast, setBreakfast] = React.useState(false);
   const [fitnessRoom, setFitnessRoom] = React.useState(false);
@@ -139,8 +140,8 @@ export default function BookingModal({ BookingDetails }) {
   }
   
   React.useEffect(() => {
-    console.log({ BookingDetails });
-    setMapping(BookingDetails.Room_type_rate_mapping);
+    console.log(booking,HotelDetails.Room_type_rate_mapping);
+    setMapping(HotelDetails.Room_type_rate_mapping);
     console.log(mapping);
   }, [BookingDetails, roomtype, endDate, rooms]);
 
@@ -160,8 +161,9 @@ export default function BookingModal({ BookingDetails }) {
     if (meals == true) {
       amenities.push("All meals included (Breakfast, Lunch, Dinner)");
     }
+
     let data = {
-      Hotel_id: BookingDetails._id,
+      Hotel_id: hoteldetails._id,
       Customer_id: sessionStorage.getItem("userid"), //BookingDetails.cust_id,
       Hotel_name: BookingDetails.Hotel_name,
       Customer_name: sessionStorage.getItem("username"), //BookingDetails.cust_name,
@@ -174,17 +176,19 @@ export default function BookingModal({ BookingDetails }) {
       Guests: guests,
       Rooms: rooms,
       RoomType: roomtype,
+      _id: BookingDetails._id,
       Amenities: amenities, //BookingDetails.Amenities
     };
-    console.log("here: ",data);
+    console.log("Modify boooking: ",data);
       axios
-        .post(`${backendServer}/api/booking/newBooking`, data)
+        .post(`${backendServer}/api/booking/updateBooking`, data)
         .then((result) => {
           console.log(result);
           if (result.status === 200) {
             // return "Success"
-            alert("Booking Confirmed");
-            history("/Bookings");
+            alert("Booking updated");
+            sessionStorage.removeItem("type");
+            history("/Dashboard");
           }
         });
   };
@@ -289,6 +293,7 @@ export default function BookingModal({ BookingDetails }) {
                       value={roomtype}
                       label="RoomType"
                       onChange={handleRoomChange}
+                      defaultValue={roomtype}
                     >
                       <MenuItem value={"doubleRoom"}>Double Rooms</MenuItem>
                       <MenuItem value={"suites"}>Suites</MenuItem>

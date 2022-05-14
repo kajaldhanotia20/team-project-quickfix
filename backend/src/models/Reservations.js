@@ -14,6 +14,9 @@ let ReservationSchema = new mongoose.Schema({
     Total_cost: {type: String, required: true},
     Amenities:{type: Array, required:false},
     image:{type:String, required:false},
+    Guests: {type:String, required:false},
+    Rooms: {type:String, required:false},
+    RoomType: {type:String, required:false},
     Created_at: {type: Date, required: true},
 });
 
