@@ -1,6 +1,8 @@
 const ReservationsModel = require("../models/Reservations");
 const mongoose = require('mongoose');
 const HotelsModel = require("../models/Hotels");
+
+
 exports.createBooking = async function (req, res) {
     const data = req.body;
     try{
@@ -15,7 +17,8 @@ exports.createBooking = async function (req, res) {
             Booking_end_date: data.Booking_end_date,
             Total_cost: data.Total_cost,
             Created_at: data.Created_at,
-            Hotel_image: data.Hotel_image
+            Hotel_image: data.Hotel_image,
+            Amenities: data.Amenities,
             // _id : mongoose.Schema.ObjectId
             });
         const book = await newBooking.save();
@@ -39,8 +42,12 @@ exports.createBooking = async function (req, res) {
 };
 
 exports.deleteBooking = async function (req, res) {
-    const data= req.body;
-    const id= data.id;
+    // const data= req.body;
+    // console.log(data)
+    // const id= data.id;
+    // console.log(id);
+    console.log(req.query.id)
+    let id=req.query.id;
     try{
         ReservationsModel.findByIdAndDelete(id,function (err, docs) {
             if (err) {
@@ -49,7 +56,7 @@ exports.deleteBooking = async function (req, res) {
                     .status(500)
                     .send(JSON.stringify({message: 'Something went wrong!'}));
             } else {
-                res.status(200).setHeader("Content-Type", "text/plain").end(JSON.stringify(data));
+                res.status(200).setHeader("Content-Type", "text/plain").end(JSON.stringify(id));
             }
         });
     }catch(err){

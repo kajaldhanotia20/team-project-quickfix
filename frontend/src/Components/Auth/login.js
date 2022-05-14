@@ -35,8 +35,9 @@ export default function Login() {
             .then(res => res.json()
             )
         .then(data => {
+            console.log(data);
             sessionStorage.setItem("username",data[0].User_name);
-            sessionStorage.setItem("usertype","Hotel");
+            sessionStorage.setItem("usertype",data[0].User_type);
             sessionStorage.setItem("userid",data[0].id);
             setError(data.message)
             history('/dashboard');

@@ -34,7 +34,7 @@ export default function Signup() {
     const [error, setError]= useState(false);
     const [email, setEmail]= useState('');
     const [phone, setPhone]=useState('');
-    const [type, setType]=useState('');
+    const [type, setType]=useState('Customer');
     const history = useNavigate();
     let redirectvar =''
 

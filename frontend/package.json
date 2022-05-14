@@ -33,6 +33,7 @@
     "react-dom": "^18.0.0",
     "react-material-ui-form-validator": "^3.0.0",
     "react-redux": "^8.0.1",
+    "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "rifm": "^0.12.1",

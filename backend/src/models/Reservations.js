@@ -12,6 +12,7 @@ let ReservationSchema = new mongoose.Schema({
     Booking_start_date: {type: Date, required: true},
     Booking_end_date: {type: Date, required: false},
     Total_cost: {type: String, required: true},
+    Amenities:{type: Array, required:false},
     Created_at: {type: Date, required: true},
 });
 

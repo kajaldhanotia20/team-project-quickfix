@@ -9,9 +9,8 @@ import Navbar from "./Navbar";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import backendServer from '../../webConfig';
-import {Button, Modal} from "@mui/material";
-import Box from "@mui/material/Box";
-import BookingModal from '../Modules/bookingModal';
+import {Button, Container, Modal} from "@mui/material";
+import HotelCard from './HotelCard';
 
 const style = {
     position: 'absolute',
@@ -31,9 +30,6 @@ export default function HoteCards(searchText) {
     const [initialItems, setInitialItems] = React.useState([]);
     const [items, setItems] = React.useState(initialItems);
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    var navigate = useNavigate();
 
 
     React.useEffect(()=>{
@@ -57,54 +53,19 @@ export default function HoteCards(searchText) {
         }
     }
 
-    async function loadBookModal(){
-        console.log("called here on click!")
-        navigate("/booking");
-    }
 
   return (
     <div>
         <Navbar onTextChange={onTextChange} search={search}/><br/>
-        <Grid container spacing={2}
-                    alignItems="center"
-                    style={{ minHeight: '80vh' }}>
-            {items.map((item, index) => {
-                return <Grid item xs={4}>
-                    <Card style = {{width:"100%", height:"100%"}}>
-                    <CardMedia
-                        component="img"
-                        height="140"
-                        image={item.Profile_image}
-                        alt={item.Hotel_name}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5">
-                        {item.Hotel_name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        {item.Description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small" onClick={handleOpen}>Select</Button>
-                        <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                <BookingModal BookingDetails={item} />
-                            </Box>
-                        </Modal>
-                        <Button size="small" onClick={()=>{
-                            sessionStorage.setItem("hotel_id",item._id);
-                            navigate("/profile")}}>Learn More</Button>
-                    </CardActions>
-                    </Card>
+        <Container>
+        <Grid container spacing={2}>
+            {items.map((data,index)=>{
+                return <Grid item md ={4} sm={6} key={data._id}>
+                    <HotelCard item={data}/>
                 </Grid>
             })}
         </Grid>
+        </Container>
     </div>
   );
 }
