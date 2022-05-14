@@ -131,14 +131,13 @@ export default function Profile() {
       .catch((err) => console.log(err));
   };
 
-  console.log("am", amenities);
   return (
     <div>
       <div>
         <Navbar />
       </div>
       <Grid container>
-        <Grid item xs={6} md={4}>
+        <Grid item xs={12} sm={6} md={6}>
           <Paper style={{ "box-shadow": "0 0 0 0" }}>
             <Container component="main" maxWidth="xs">
               {/* <CssBaseline /> */}
@@ -151,10 +150,15 @@ export default function Profile() {
                   height: "100%",
                 }}
               >
-                <Box component="form" noValidate>
+                <Box noValidate>
                   <Grid container spacing={2}>
-                    <Grid item xs={12}></Grid>
-                    <img src={image} alt="profile" />
+                    <Grid item xs={12} sm={6} md={6}></Grid>
+                    <img
+                      width="500vh"
+                      height="300vh"
+                      src={image}
+                      alt="profile"
+                    />
                     <Grid container justifyContent="flex-end"></Grid>
                   </Grid>
                 </Box>
