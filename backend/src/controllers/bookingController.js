@@ -17,7 +17,7 @@ exports.createBooking = async function (req, res) {
             Booking_end_date: data.Booking_end_date,
             Total_cost: data.Total_cost,
             Created_at: data.Created_at,
-            Hotel_image: data.Hotel_image,
+            image: data.Hotel_image,
             Amenities: data.Amenities,
             // _id : mongoose.Schema.ObjectId
             });
@@ -61,7 +61,9 @@ exports.deleteBooking = async function (req, res) {
         });
     }catch(err){
         console.error("Error in createJobPostings : " + err);
-        res(null,{ response_code: 500, response_data: "Something went wrong!", err: err});
+        res
+            .status(500)
+            .send(JSON.stringify({ message: 'Something went wrong!'}));
     }
 }
 exports.getBookingsByID = async function (req, res){
@@ -114,15 +116,14 @@ exports.updateBooking = async function (req, res) {
     console.log("Update hotel Function");
     console.log("req body: ", req.body);
     // var data = await HotelsModel.find({ _id: req.query._id });
-    console.log(req.query._id);
     var data = req.body;
     try {
         await ReservationsModel.findOneAndUpdate(
             {
-                _id: req.query._id,
+                _id: req.body._id,
             },
             {
-                Hotel_id: data.Hotel_id,
+                Hotel_id : data.Hotel_id,
                 Customer_id: data.Customer_id,
                 Hotel_name: data.Hotel_name,
                 Customer_name: data.Customer_name,
@@ -132,8 +133,9 @@ exports.updateBooking = async function (req, res) {
                 Booking_end_date: data.Booking_end_date,
                 Total_cost: data.Total_cost,
                 Created_at: data.Created_at,
-                Hotel_image: data.Hotel_image
-            }
+                image: data.Hotel_image,
+                Amenities: data.Amenities,
+                }
         );
         res.send("Updated successfully")
     }catch (e) {

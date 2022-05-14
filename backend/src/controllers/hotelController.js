@@ -5,9 +5,10 @@ const HotelsModel = require("../models/Hotels");
 
 exports.getHotelById = async function (req, res) {
   console.log("Hotel ID ", req.query);
-  var data = await HotelsModel.find({ _id: req.query._id });
+  var data = await HotelsModel.find({ _id: req.query.id });
   let date = new Date();
   if (data) {
+    console.log(data);
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
     res.end(JSON.stringify(data));
