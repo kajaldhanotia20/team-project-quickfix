@@ -63,11 +63,16 @@
    <li> User Profile and Hotel Profile - Dhruvi Shah
     </ul>
   
+  <h2> Use-Case Diagram</h2> 
+ 
+  ![Blank diagram (1)](https://user-images.githubusercontent.com/38569308/168416504-80aae1a5-acd7-48d9-8285-f078b30d8bd2.png)
+
+  
   <h2> Deployment Diagram</h2> 
   
   ![Blank diagram](https://user-images.githubusercontent.com/38569308/168413259-b050d484-2462-4b25-ae4e-86f933cbb34f.png)
 
-  
+ 
      
   <h2> XP Core Values</h2> 
  <ul>   
