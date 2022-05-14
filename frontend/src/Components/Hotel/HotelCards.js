@@ -97,7 +97,9 @@ export default function HoteCards(searchText) {
                                 <BookingModal BookingDetails={item} />
                             </Box>
                         </Modal>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small" onClick={()=>{
+                            sessionStorage.setItem("hotel_id",item._id);
+                            navigate("/profile")}}>Learn More</Button>
                     </CardActions>
                     </Card>
                 </Grid>

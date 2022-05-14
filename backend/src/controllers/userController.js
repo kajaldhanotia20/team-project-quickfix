@@ -52,8 +52,9 @@ exports.signup = async function (req, res) {
   const password = req.body.password;
   const email = req.body.email;
   const phone = req.body.phone;
+  const type = req.body.type;
   bcrypt.hash(password, saltRounds, (err, hash)=>{
-    connection.query("INSERT INTO Login_Details (User_name,User_password, id, Phone_number) VALUES (?,?,?,?)",[name, hash, email, phone], async function(error, results){
+    connection.query("INSERT INTO Login_Details (User_name,User_password, id, Phone_number, User_type) VALUES (?,?,?,?,?)",[name, hash, email, phone, type], async function(error, results){
       if(error){
         console.log(error);
         

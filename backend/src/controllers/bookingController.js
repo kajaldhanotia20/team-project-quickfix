@@ -63,9 +63,23 @@ exports.deleteBooking = async function (req, res) {
         res(null,{ response_code: 500, response_data: "Something went wrong!", err: err});
     }
 }
-exports.getBookingsByName = async function (req, res){
+exports.getBookingsByID = async function (req, res){
     await console.log("Called Get Bookings API! ", req.query);
-    var data = await ReservationsModel.find({"Customer_name":req.query.name});
+    var data = await ReservationsModel.find({"Customer_id":req.query.id});
+    if (data){
+        res.statusCode = 200;
+        res.setHeader("Content-Type","text/plain");
+        res.end(JSON.stringify(data));
+    }
+    else{
+        res
+            .status(500)
+            .send(JSON.stringify({ message: 'Something went wrong!'}));
+    }
+}
+exports.getBookingsByHotelID = async function (req, res){
+    await console.log("Called Get Bookings API! ", req.query);
+    var data = await ReservationsModel.find({"Hotel_id":req.query.id});
     if (data){
         res.statusCode = 200;
         res.setHeader("Content-Type","text/plain");

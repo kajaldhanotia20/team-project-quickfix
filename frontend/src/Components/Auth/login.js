@@ -32,11 +32,14 @@ export default function Login() {
                 email:email,
                 password:password
             })})
-            .then(res => res.json())
+            .then(res => res.json()
+            )
         .then(data => {
-            console.log("data ",data);
+            sessionStorage.setItem("username",data[0].User_name);
+            sessionStorage.setItem("usertype","Hotel");
+            sessionStorage.setItem("userid",data[0].id);
             setError(data.message)
-            history('/')
+            history('/dashboard');
         })
     }
 

@@ -80,7 +80,7 @@ export default function Profile() {
   useEffect(() => {
     axios
       .get(`${backendServer}/api/hotels/getHotelById`, {
-        params: { _id: "H01" },
+        params: { _id: sessionStorage.getItem("userid") },
       })
       .then((response) => {
         let data = response.data[0];
@@ -125,7 +125,7 @@ export default function Profile() {
     };
     axios
       .put(`${backendServer}/api/hotels/updateHotelById`, dataObj, {
-        params: { _id: "H01" },
+        params: { _id: sessionStorage.getItem("userid") },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

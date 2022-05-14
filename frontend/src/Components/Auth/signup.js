@@ -6,6 +6,11 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import  {makeStyles}  from '@material-ui/core/';
 import Button from '@mui/material/Button';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
 import {Navigate} from 'react-router';
@@ -27,6 +32,7 @@ export default function Signup() {
     const [error, setError]= useState('');
     const [email, setEmail]= useState('');
     const [phone, setPhone]=useState('');
+    const [type, setType]=useState('');
     const history = useNavigate();
     let redirectvar =''
 
@@ -41,6 +47,7 @@ export default function Signup() {
                 password:password,
                 email: email,
                 phone: phone,
+                type: type
             })})
             .then(res =>
                 // console.log(JSON.stringify(res))
@@ -66,7 +73,7 @@ export default function Signup() {
             >
             <Grid item xs={3}>
             <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="120" />
-            <br/>
+            
             </Grid>  
             <Grid item xs={3}> 
             <Typography variant="h4">Let's get started.</Typography>
@@ -95,6 +102,22 @@ export default function Signup() {
             variant="outlined" />
             </Grid>
             </Box>
+            
+<br></br>
+<br></br>
+              <FormControl onChange={(e)=>{setType(e.target.value)}}>
+  <FormLabel id="demo-radio-buttons-group-label" required>User Type</FormLabel>
+  <RadioGroup 
+    aria-labelledby="demo-radio-buttons-group-label"
+    defaultValue="Customer"
+    name="radio-buttons-group"
+  >
+    <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
+    <FormControlLabel value="Hotel owner" control={<Radio />} label="Hotel owner" />
+    
+  </RadioGroup>
+</FormControl>
+<br></br>
             <Grid item>
             <Button  onClick={signup}
             className={Classes.button1} variant="contained" color="primary">
@@ -106,7 +129,7 @@ export default function Signup() {
                 Already a user? Sign in.
             </Typography>
             </Link>
-            
+          
         </Grid> 
                         
         </div>

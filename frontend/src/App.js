@@ -8,10 +8,12 @@ import Bookings from "./Components/Hotel/Bookings";
 import Dashboard from "./Components/Hotel/Dashboard";
 import Profile from "./Components/Hotel/Profile";
 import UserProfile from "./Components/User/userProfile";
+import Logout from "./Components/Auth/Logout";
+import HotelDetails from "./Components/Hotel/HotelDetails";
 
 function App() {
-  sessionStorage.setItem("username", "kd");
-  sessionStorage.setItem("usertype", "Customer");
+  // sessionStorage.setItem("username", "kd");
+  // sessionStorage.setItem("usertype", "Customer");
   return (
     <Router>
       <div>
@@ -30,7 +32,7 @@ function App() {
         <Routes>
           <Route exact path="/mybooking" element={<MyBooking />} />
         </Routes>
-        
+
         <Routes>
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/bookings" element={<Bookings />} />
@@ -40,6 +42,12 @@ function App() {
         </Routes>
         <Routes>
           <Route exact path="/userprofile" element={<UserProfile />} />
+        </Routes>
+        <Routes>
+          <Route exact path="/logout" element={<Logout />} />
+        </Routes>
+        <Routes>
+          <Route exact path="/hoteldetails" element={<HotelDetails />} />
         </Routes>
       </div>
     </Router>

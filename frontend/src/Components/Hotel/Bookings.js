@@ -25,8 +25,12 @@ const Bookings = () => {
 
     React.useEffect(()=>{
         async function settingUpData(){
-            await sessionStorage.setItem("username","kd");
-            var items = await axios.get(`${backendServer}/api/booking/getBookingsByName?name=${sessionStorage.getItem("username")}`);
+            if (sessionStorage.getItem("usertype")==="Hotel"){
+                var items = await axios.get(`${backendServer}/api/booking/getBookingsByHotelID?id=${sessionStorage.getItem("userid")}`);
+            }
+            else{
+                var items = await axios.get(`${backendServer}/api/booking/getBookingsByID?id=${sessionStorage.getItem("userid")}`);
+            }
             console.log("items:",items.data);
             await setInitialItems(items.data);
             await setItems(items.data);
@@ -74,16 +78,24 @@ return(
                     <TableBody>
                         <TableRow>
                         <TableCell style={{width:'30%'}}>
+                        {sessionStorage.getItem("usertype")==="Customer"&&
                         <img
                             src={item.image}
                             alt={item.Hotel_name}
-                        />
+                        />}
+
+                        {sessionStorage.getItem("usertype")==="Hotel"&&
+                        <img
+                            src="/"
+                            alt={item.Customer_name}
+                        />}
                         {/* <ListItemAvatar>
                             <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
                         </ListItemAvatar> */}
                         </TableCell>
                         <TableCell style={{width:'35%'}} align="left">
                             <TableRow>
+                                {sessionStorage.getItem("usertype")==="Customer"&&
                                 <ListItemText
                                     primary={item.Hotel_name}
                                     secondary={
@@ -99,7 +111,26 @@ return(
                                         <b>Total Cost: ${item.Total_cost}</b>
                                         </React.Fragment>
                                     }
-                                />
+                                />}
+
+                                {sessionStorage.getItem("usertype")==="Hotel"&&
+                                <ListItemText
+                                    primary={item.Customer_name}
+                                    secondary={
+                                        <React.Fragment>
+                                        <Typography
+                                            sx={{ display: 'inline' }}
+                                            component="span"
+                                            variant="body2"
+                                            color="text.primary"
+                                        >
+                                            Rate per day: {item.Rate_per_day}
+                                        </Typography> <br/>
+                                        <b>Total Cost: ${item.Total_cost}</b>
+                                        </React.Fragment>
+                                    }
+                                />}
+
                             </TableRow>
                             <TableRow><br/></TableRow>
                             <TableRow >
@@ -111,10 +142,14 @@ return(
                                 </td>
                             </TableRow>
                         </TableCell>
+                        {sessionStorage.getItem("usertype")==="Customer" &&
                         <TableCell style={{width:'35%'}} align="right">
                                 <Button variant="contained" color="primary">Modify</Button> &nbsp; &nbsp;
+
                                 <Button variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</Button>
                         </TableCell>
+}
+
                         </TableRow>
                     </TableBody>
                 </Table>

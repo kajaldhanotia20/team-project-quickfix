@@ -7,5 +7,7 @@ router.post("/updateBooking", bookingController.updateBooking);
 
 router.post("/deleteBooking", bookingController.deleteBooking);
 router.get("/getBookingsByName", bookingController.getBookingsByName);
+router.get("/getBookingsByID", bookingController.getBookingsByID);
+router.get("/getBookingsByHotelID", bookingController.getBookingsByHotelID);
 
 module.exports = router;
