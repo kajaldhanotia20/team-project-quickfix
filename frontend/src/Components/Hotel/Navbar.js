@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../../logo.png'
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
@@ -104,7 +105,7 @@ const Navbar = ({onTextChange, search}) => {
     <AppBar position="relative">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="150" height="60" />
+        <img src={Logo} alt='' width="150" height="60" />
           {/* <Typography
             variant="h6"
             noWrap
