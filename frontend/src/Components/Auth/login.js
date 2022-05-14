@@ -71,11 +71,11 @@ export default function Login() {
             <Box sx={{width:500}} >
             <Grid item > 
             
-            <TextField fullWidth id="outlined-basic" label="Email ID" 
+            <TextField required fullWidth id="outlined-basic" label="Email ID" 
             onChange={(e)=>{setEmail(e.target.value)}}
             variant="outlined" />
             <br/><br/>
-            <TextField type="password"
+            <TextField required type="password"
              fullWidth id="outlined-basic" label="Password" 
             onChange={(e)=>{setPassword(e.target.value)}}
             variant="outlined" />
