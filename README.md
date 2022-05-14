@@ -16,7 +16,7 @@
     <ul> 
       <li>Frontend - React </li> 
       <li> Backend - Nodejs, Expressjs </li>
-      <li> Database - MySQL, MongoDB </li> 
+      <li> Database - MySQL, MongoDB, AWS S3 </li> 
       <li> API Testing - Postman </li> 
       <li> Cloud - Amazon Web Services</li> 
     </ul>
