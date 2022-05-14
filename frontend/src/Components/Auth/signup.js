@@ -12,8 +12,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { Link, useNavigate } from 'react-router-dom';
+import PropTypes from "prop-types";
 import  {useState} from "react";
 import {Navigate} from 'react-router';
+import { ValidatorComponent } from 'react-material-ui-form-validator';
 
 
 const useStyles= makeStyles({
@@ -29,13 +31,12 @@ export default function Signup() {
     const Classes = useStyles()
     const [name, setName]= useState('')
     const [password, setPassword]= useState('')
-    const [error, setError]= useState('');
+    const [error, setError]= useState(false);
     const [email, setEmail]= useState('');
     const [phone, setPhone]=useState('');
     const [type, setType]=useState('Customer');
     const history = useNavigate();
     let redirectvar =''
-
 
 
     function signup(){
@@ -58,8 +59,11 @@ export default function Signup() {
             history("/login")
     }
 
-
+   
+    
     return(
+      
+       
         <Container>
             {redirectvar}
         <div>
@@ -82,10 +86,12 @@ export default function Signup() {
             <Grid item xs={3}> 
             {/* <Typography variant="h6">Enter your phone number</Typography> */}
             </Grid>
+
+            
             <Box sx={{width:500}} >
              <Grid item > 
-             <TextField required type="text" fullWidth id="outlined-basic" label="Name" 
-             onChange={(e)=>{setName(e.target.value)}}
+             <TextField  required type="text" fullWidth id="outlined-basic" label="Name" 
+             onChange={(e)=>{setName(e.target.value) } } 
              variant="outlined" />
             <br/><br/>
             <TextField required type="email" fullWidth id="outlined-basic" label="Email ID"
@@ -101,22 +107,25 @@ export default function Signup() {
             onChange={(e)=>{setPassword(e.target.value)}}
             variant="outlined" />
             </Grid>
-            </Box>
+           
             
 <br></br>
 <br></br>
-<FormControl onChange={(e)=>{setType(e.target.value)}}>
-  <FormLabel id="demo-radio-buttons-group-label" required>User Type</FormLabel>
-  <RadioGroup 
-    aria-labelledby="demo-radio-buttons-group-label"
-    defaultValue="Customer"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
-    <FormControlLabel value="Hotel" control={<Radio />} label="Hotel owner" />
+            <FormControl onChange={(e)=>{setType(e.target.value)}}>
+
+                <FormLabel id="demo-radio-buttons-group-label" required>User Type</FormLabel>
+                <RadioGroup 
+                 aria-labelledby="demo-radio-buttons-group-label"
+                 name="radio-buttons-group"
+                 >
+                <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
+                <FormControlLabel value="Hotel" control={<Radio />} label="Hotel" />
     
-  </RadioGroup>
-</FormControl>
+                </RadioGroup>
+            </FormControl>
+        </Box>
+
+<br></br>
 <br></br>
             <Grid item>
             <Button  onClick={signup}
@@ -124,15 +133,20 @@ export default function Signup() {
                 Sign Up
             </Button>
             </Grid>
+           
             <Link to='/login'>
             <Typography variant='overline'>
                 Already a user? Sign in.
             </Typography>
             </Link>
+           
           
         </Grid> 
-                        
+               
         </div>
         </Container>
+       
     )
-}
+    }
+
+    

@@ -16,7 +16,7 @@
     <ul> 
       <li>Frontend - React </li> 
       <li> Backend - Nodejs, Expressjs </li>
-      <li> Database - MySQL, MongoDB </li> 
+      <li> Database - MySQL, MongoDB, AWS S3 </li> 
       <li> API Testing - Postman </li> 
       <li> Cloud - Amazon Web Services</li> 
     </ul>
@@ -60,11 +60,19 @@
    <li>Signup and Login Component - Kajal Dhanotia
    <li>Book, Update and Modify bookings- Kinjal Dhanani
    <li>Hotel Dashboard and Booking History- Dhrupa Patel
-   <li> User Profile and Hotel Profile - Dhruvi Shah
+   <li> User Profile,Hotel Profile and Hotel Details - Dhruvi Shah
     </ul>
   
+  <h2> Use-Case Diagram</h2> 
+ 
+  ![Blank diagram (1)](https://user-images.githubusercontent.com/38569308/168416504-80aae1a5-acd7-48d9-8285-f078b30d8bd2.png)
+
+  
   <h2> Deployment Diagram</h2> 
-     
+  
+  ![Blank diagram](https://user-images.githubusercontent.com/38569308/168413259-b050d484-2462-4b25-ae4e-86f933cbb34f.png)
+
+ 
      
   <h2> XP Core Values</h2> 
  <ul>   
