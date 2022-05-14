@@ -16,10 +16,11 @@ const HotelDetails = ({ match }) => {
   const [rating, setRating] = useState("");
   const [room, setRoom] = useState({});
   const [reviews, setReviews] = useState({});
+  let id = sessionStorage.getItem("hotel_id");
   useEffect(() => {
     axios
       .get(`${backendServer}/api/hotels/getHotelById`, {
-        params: { _id: "tajmahal@gmail.com" },
+        params: { _id: id },
       })
       .then((response) => {
         let data = response.data[0];
@@ -41,7 +42,7 @@ const HotelDetails = ({ match }) => {
     <div>
       <Navbar />
       <div style={{}}>
-        <img src={image} width="1900px" height="375vh" />
+        <img src={image} width="1869px" height="375vh" />
       </div>
       <div style={{ margin: "2%" }}>
         <Typography>
