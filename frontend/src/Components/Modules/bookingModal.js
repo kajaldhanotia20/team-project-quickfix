@@ -20,7 +20,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Navigate } from "react-router";
 
 import backendServer from "../../webConfig";
 import { getDate } from "date-fns";
@@ -71,7 +70,7 @@ export default function BookingModal({ BookingDetails }) {
     // setCost((parseFloat(mapping[roomtype])* days) + (50* guests)* rooms)
   };
 
-  const getDays = async () => {
+  const getDays = async (date) => {
     await setDays(getDate(endDate) - getDate(startDate));
     sessionStorage.setItem("days", getDate(endDate) - getDate(startDate));
     // console.log(days)
@@ -96,11 +95,11 @@ export default function BookingModal({ BookingDetails }) {
     // if(getDay(startDate))
     if (getDay(startDate) > 5 || getDay(endDate) > 5) {
       await setCost(
-        parseFloat(mapping[roomtype]) * sessionDays * 0.15 + 50 * guests * rooms
+        (parseFloat(mapping[roomtype]) * sessionDays * 1.15) + (50 * (guests-2)) * rooms
       );
     } else {
       await setCost(
-        parseFloat(mapping[roomtype]) * sessionDays + 50 * guests * rooms
+        (parseFloat(mapping[roomtype]) * sessionDays ) + (50 * guests) * rooms
       );
     }
   }
@@ -116,11 +115,26 @@ export default function BookingModal({ BookingDetails }) {
     // await calculatePrice();
   };
 
+  const handleDateChange = async(event)=>{
+    console.log(event)
+    // console.log("here",date, getDate(endDate), getDate(date) - getDate(startDate))
+    if(getDate(event) - getDate(startDate)>7){
+      console.log("inside")
+      await alert("You can book for 7 days only!");
+      await setEndDate(null)
+    }else{
+      await setEndDate(event);
+    }
+    await getDays(event);
+    
+  }
+  
   React.useEffect(() => {
     console.log({ BookingDetails });
     setMapping(BookingDetails.Room_type_rate_mapping);
     console.log(mapping);
-  }, [BookingDetails, roomtype]);
+  }, [BookingDetails, roomtype, endDate, rooms]);
+
 
   const createBooking = () => {
     console.log(booking);
@@ -172,8 +186,8 @@ export default function BookingModal({ BookingDetails }) {
   return (
     <div>
       <Container>
-        <h1>Hotel Booking</h1>
-        <br />
+        <br/>
+        <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="100" />
         <Stack>
           <Stack direction={"row"} justifyContent={"space-around"}>
             {/*<Box sx={{ display: 'flex', alignItems: 'flex-end' }}>*/}
@@ -195,7 +209,7 @@ export default function BookingModal({ BookingDetails }) {
                 label="Check-out Date"
                 value={endDate}
                 onChange={(newValue) => {
-                  setEndDate(newValue);
+                  handleDateChange(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -250,7 +264,10 @@ export default function BookingModal({ BookingDetails }) {
                     />
                   </FormGroup>
                   <br />
-                  <h3>Total Cost: {isNaN(cost) ? 0 : cost}</h3>
+                  <Typography >Base room price: {mapping[roomtype]} $</Typography>
+                  <Typography variant="caption">There may be a price hike on weekends and holidays</Typography>
+<br/>
+                  <h3 >Total Cost: {isNaN(cost) ? 0 : cost} $</h3>
                 </Stack>
               </div>
               <Stack direction={"column"}>
