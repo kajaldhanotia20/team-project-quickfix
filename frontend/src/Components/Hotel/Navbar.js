@@ -92,8 +92,12 @@ const Navbar = ({onTextChange, search}) => {
   };
 
   async function redirectComponent(page){
-    navigate("/"+page);
-
+    if (page==="Profile" && sessionStorage.getItem("usertype")==="Customer"){
+      navigate("/userprofile");
+    }
+    else{
+      navigate("/"+page);
+    }
   }
 
   return (

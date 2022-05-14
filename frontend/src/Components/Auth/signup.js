@@ -32,7 +32,7 @@ export default function Signup() {
     const [error, setError]= useState('');
     const [email, setEmail]= useState('');
     const [phone, setPhone]=useState('');
-    const [type, setType]=useState('');
+    const [type, setType]=useState('Customer');
     const history = useNavigate();
     let redirectvar =''
 
@@ -105,7 +105,7 @@ export default function Signup() {
             
 <br></br>
 <br></br>
-              <FormControl onChange={(e)=>{setType(e.target.value)}}>
+<FormControl onChange={(e)=>{setType(e.target.value)}}>
   <FormLabel id="demo-radio-buttons-group-label" required>User Type</FormLabel>
   <RadioGroup 
     aria-labelledby="demo-radio-buttons-group-label"
@@ -113,7 +113,7 @@ export default function Signup() {
     name="radio-buttons-group"
   >
     <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
-    <FormControlLabel value="Hotel owner" control={<Radio />} label="Hotel owner" />
+    <FormControlLabel value="Hotel" control={<Radio />} label="Hotel owner" />
     
   </RadioGroup>
 </FormControl>

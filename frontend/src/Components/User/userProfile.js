@@ -73,7 +73,7 @@ export default function Profile() {
   useEffect(() => {
     axios
       .get(`${backendServer}/api/users/getUserById`, {
-        params: { _id: "U01" },
+        params: { _id: sessionStorage.getItem("userid") },
       })
       .then((response) => {
         let data = response.data[0];
