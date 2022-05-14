@@ -7,6 +7,7 @@ import { Container } from '@material-ui/core'
 
 export default function LandingPage() {
 
+    sessionStorage.clear();
    
     return (
 
