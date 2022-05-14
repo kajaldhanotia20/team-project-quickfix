@@ -13,15 +13,34 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import { Modal} from "@mui/material";
+import Box from "@mui/material/Box";
+import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
 import backendServer from '../../webConfig';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '60%',
+    height: '90%',
+    bgcolor: 'background.paper',
+    // border: '2px solid #000',
+    // boxShadow: 24,
+    // p: 4,
+};
 
 const Bookings = () => {
 
     const [search, setSearch] = React.useState("");
     const [initialItems, setInitialItems] = React.useState([]);
     const [items, setItems] = React.useState(initialItems);
+    const [deleteFlag, setDeleteFlag] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     React.useEffect(()=>{
         async function settingUpData(){
@@ -36,7 +55,7 @@ const Bookings = () => {
             await setItems(items.data);
         }
         settingUpData();
-    },[]);
+    },[deleteFlag]);
 
     async function DeleteBooking(id){
         // let data ={
@@ -44,8 +63,9 @@ const Bookings = () => {
         // }
         console.log(id)
         var res = await axios.post(`${backendServer}/api/booking/deleteBooking?id=${id}`);
+        setDeleteFlag(true);
         console.log(res);
-
+        
     }
     
     async function onTextChange(text){
@@ -106,10 +126,10 @@ return(
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            Booked Rooms with utilities like:
-                                            {/* {items..map((item,index)=>{
-                                                return <li key={index}>{item}</li>
-                                            })} */}
+                                            Booked Rooms with utilities:
+                                            {item.Amenities.map((amenity,index)=>{
+                                                return <h5>{amenity}</h5>
+                                            })}
                                         </Typography> <br/>
                                         <b>Total Cost: ${item.Total_cost}</b>
                                         </React.Fragment>
@@ -147,7 +167,17 @@ return(
                         </TableCell>
                         {sessionStorage.getItem("usertype")==="Customer" &&
                         <TableCell style={{width:'35%'}} align="right">
-                                <Button variant="contained" color="primary">Modify</Button> &nbsp; &nbsp;
+                                <Button variant="contained" color="primary" onClick={handleOpen}>Modify</Button> &nbsp; &nbsp;
+                                <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <BookingModal BookingDetails={item} />
+                                    </Box>
+                                </Modal>
 
                                 <Button variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</Button>
                         </TableCell>

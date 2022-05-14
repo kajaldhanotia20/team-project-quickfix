@@ -17,7 +17,8 @@ exports.createBooking = async function (req, res) {
             Booking_end_date: data.Booking_end_date,
             Total_cost: data.Total_cost,
             Created_at: data.Created_at,
-            Hotel_image: data.Hotel_image
+            Hotel_image: data.Hotel_image,
+            Amenities: data.Amenities,
             // _id : mongoose.Schema.ObjectId
             });
         const book = await newBooking.save();

@@ -34,8 +34,9 @@ export default function BookingModal({BookingDetails}) {
     const [guests, setGuests] = React.useState(2);
     const [rooms, setRooms] = React.useState(1);
     const [cost, setCost] = React.useState(0);
+    sessionStorage.setItem("cost",0);
     const [roomCost, setRoomCost] = React.useState(0);
-    const [roomtype, setRoomType] = React.useState('');
+    const [roomtype, setRoomType] = React.useState('doubleRoom');
     const [mapping, setMapping] = React.useState('');
     const [Breakfast, setBreakfast]= React.useState(false);
     const [fitnessRoom, setFitnessRoom]= React.useState(false);
@@ -43,63 +44,67 @@ export default function BookingModal({BookingDetails}) {
     const [parking, setParking]= React.useState(false);
     const [meals, setMeals]= React.useState(false);
     
-    const handleCostChange = (event, newCost) => {
-        setCost(newCost);
-    };
+    // const handleCostChange = (event, newCost) => {
+    //     setCost(newCost);
+    // };
 
-    const addGuests=()=>{
-        setGuests(guests+1);
+    const addGuests=async()=>{
+        await setGuests(guests+1);
         console.log(guests)
         // getDays();
         // setCost(parseFloat(mapping[roomtype]) + (50* guests)*rooms)
-        calculatePrice();
+        await calculatePrice();
     }
-    const subGuests=()=>{
-        setGuests(guests-1);
+    const subGuests=async()=>{
+        await setGuests(guests-1);
         console.log(guests)
         // getDays();
-        calculatePrice();
+        await calculatePrice();
         // setCost((parseFloat(mapping[roomtype])* days) + (50* guests)* rooms)
     }
 
-    const getDays =()=>{
-        setDays(getDate(endDate)- getDate(startDate));
+    const getDays =async ()=>{
+        await setDays(getDate(endDate)- getDate(startDate));
+        sessionStorage.setItem("days",getDate(endDate)- getDate(startDate) )
         // console.log(days)
     }
-    const addRooms=()=>{
-        setRooms(rooms+1);
-        getDays();
-        calculatePrice();    }
+    const addRooms= async()=>{
+        await setRooms(rooms+1);
+        await getDays();
+        await calculatePrice();    }
 
-    const subRooms=()=>{
-        setRooms(rooms-1);
-        getDays();
-        
+    const subRooms=async ()=>{
+        await setRooms(rooms-1);
+        await getDays();
+        await calculatePrice(); 
     }
 
 
     async function calculatePrice(){
         await getDays();
-        console.log(days, getDay(startDate))
+        
+        var sessionDays = await sessionStorage.getItem("days");
+        console.log(sessionDays,mapping[roomtype], roomtype, guests, rooms)
         // if(getDay(startDate))
         if(getDay(startDate)>5 || getDay(endDate)>5){
-            setCost((parseFloat(mapping[roomtype])* days*0.15) + (50* guests)* rooms)
+
+            await setCost((parseFloat(mapping[roomtype])* sessionDays*0.15) + (50* guests)* rooms);
 
         }else{
-            setCost((parseFloat(mapping[roomtype])* days) + (50* guests)* rooms)
+            await setCost((parseFloat(mapping[roomtype])* sessionDays) + (50* guests)* rooms);
         }
 
     }
 
     const handleRoomChange = async (event) => {
         await setRoomType(event.target.value);
-        let roomtype = event.target.value;
-        console.log(roomtype);
-        // let mapping = BookingDetails.Room_type_rate_mapping;
-        console.log(mapping[roomtype]);
-        let roomcost = parseFloat(mapping[roomtype]);
-        // setCost(cost+ roomcost);
-       await  calculatePrice();
+        // let roomtype = await event.target.value;
+        // console.log(roomtype);
+        // // let mapping = BookingDetails.Room_type_rate_mapping;
+        // console.log(mapping[roomtype]);
+        // let roomcost = await parseFloat(mapping[roomtype]);
+        // // setCost(cost+ roomcost);
+       await calculatePrice();
     };
 
     React.useEffect(()=>{
