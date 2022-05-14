@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import backendServer from "../../webConfig";
+import Navbar from "./Navbar";
 
 const HotelDetails = ({ match }) => {
   const [name, setName] = useState("");
@@ -38,31 +39,35 @@ const HotelDetails = ({ match }) => {
 
   return (
     <div>
+      <Navbar />
       <div style={{}}>
-        <img src={image} width="1900px" height="400vh" />
+        <img src={image} width="1900px" height="375vh" />
       </div>
       <div style={{ margin: "2%" }}>
         <Typography>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>Name: {name}</Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Description: {description}
+          <Box sx={{ fontWeight: "bold", m: 1 }}> {name}</Box>
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Description: </span>
+            {description}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Working Hours: {workingHours}
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Working Hours: </span>
+            {workingHours}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Contact number: {phoneNumber}
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Contact Number: </span>
+            {phoneNumber}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Amenities:
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Amenities:</span>
             {amenities && amenities.length > 0
               ? amenities.map((ele) => {
                   return <p> - {ele}</p>;
                 })
-              : "temp"}
+              : "Data not found"}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Rate:
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Rate:</span>
             {room
               ? Object.keys(room).map((ele) => {
                   return (
@@ -71,10 +76,10 @@ const HotelDetails = ({ match }) => {
                     </p>
                   );
                 })
-              : "temp"}
+              : "Data not found"}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>
-            Reviews:
+          <Box sx={{ m: 1 }}>
+            <span style={{ fontWeight: "bold" }}>Reviews:</span>
             {room
               ? Object.keys(reviews).map((ele) => {
                   return (
@@ -85,8 +90,15 @@ const HotelDetails = ({ match }) => {
                 })
               : "temp"}
           </Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>Location: {location}</Box>
-          <Box sx={{ fontWeight: "bold", m: 1 }}>Rating: {rating}</Box>
+          <Box sx={{ m: 1 }}>
+            {" "}
+            <span style={{ fontWeight: "bold" }}>Location: </span>
+            {location}
+          </Box>
+          <Box sx={{ m: 1 }}>
+            {" "}
+            <span style={{ fontWeight: "bold" }}>Rating: </span> {rating}
+          </Box>
         </Typography>
       </div>
     </div>
