@@ -15,15 +15,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from "prop-types";
 import  {useState} from "react";
 import {Navigate} from 'react-router';
+import { color } from "@mui/system";
+
+import { styled } from '@mui/material/styles';
 
 
 const useStyles= makeStyles({
     button1: {
         width:200,
         height:50,
-        fontSize: 20
+        fontSize: 20,
+        
       }
 })
+
+const ColorButton = styled(Button)(({ theme }) => ({
+    
+      backgroundColor: 'black',
+    
+  }));
 
 
 export default function Signup() {
@@ -127,10 +137,10 @@ export default function Signup() {
 <br></br>
 <br></br>
             <Grid item>
-            <Button  onClick={signup}
-            className={Classes.button1} variant="contained" color="primary">
+            < ColorButton variant="contained"  onClick={signup}
+            className={Classes.button1}  >
                 Sign Up
-            </Button>
+            </ColorButton>
             </Grid>
            
             <Link to='/login'>

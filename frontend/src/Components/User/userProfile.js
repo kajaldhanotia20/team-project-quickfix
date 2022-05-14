@@ -57,6 +57,7 @@ export default function Profile() {
               // let fileName = response.data;
               // console.log("fileName", fileName);
               setImage(response.data.location);
+              console.log(response.data.location);
             }
           }
         })
@@ -100,7 +101,7 @@ export default function Profile() {
     };
     axios
       .put(`${backendServer}/api/users/updateUserById`, dataObj, {
-        params: { _id: "U01" },
+        params: { _id: sessionStorage.getItem("userid") },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -112,7 +113,7 @@ export default function Profile() {
         <Navbar />
       </div>
       <Grid container>
-        <Grid item xs={6} md={4}>
+        <Grid item xs={12} sm={6} md={6}>
           <Paper style={{ "box-shadow": "0 0 0 0" }}>
             <Container component="main" maxWidth="xs">
               {/* <CssBaseline /> */}
@@ -125,7 +126,7 @@ export default function Profile() {
                   height: "100%",
                 }}
               >
-                <Box component="form" noValidate>
+                <Box item xs={12} sm={6} md={6} noValidate>
                   <Grid container spacing={2}>
                     <Grid item xs={12}></Grid>
                     <img src={image} alt="profile" />
