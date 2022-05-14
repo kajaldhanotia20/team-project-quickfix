@@ -1,42 +1,43 @@
-import React, { useEffect } from "react";
-import BookingModal from "../Modules/bookingModal";
-import {Button, Modal} from "@mui/material";
-import Box from "@mui/material/Box";
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50%',
-    height: '80%',
-    bgcolor: 'background.paper',
-    // border: '2px solid #000',
-    // boxShadow: 24,
-    // p: 4,
-};
-export default function BookingButton() {
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+import Logo from '../../logo.png'
+import '../../App.css'
+import { Container } from '@material-ui/core'
 
-    return(
-        <div>
+export default function LandingPage() {
 
-            <div>
-                <Button onClick={handleOpen}>Open modal</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <BookingModal/>
-                    </Box>
-                </Modal>
+   
+    return (
+
+       
+        <header style={ HeaderStyle }>
+           
+           <div classname="logo"><center><img src={Logo} alt="Logo"/> </center> 
+            <p className="sub-title">One-stop hotel booking platform</p>
+           
+           
+            <div className="sub-title">
+
+                <Link to="/login">
+                    <button size="sm" className="primary-button"><span>log in</span></button>
+                </Link>
+                <Link to="/signup">
+                    <button className="primary-button" id="reg_btn"><span>register </span></button>
+                </Link>
             </div>
-        </div>
-
+            </div>
+        </header>
+        
     )
+}
+
+
+const HeaderStyle = {
+    width: "100%",
+    height: "100vh",
+    background: `url(https://images.pexels.com/photos/2029663/pexels-photo-2029663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
+    //backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
 }
