@@ -21,7 +21,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Navigate } from "react-router";
-
 import backendServer from "../../webConfig";
 import { getDate } from "date-fns";
 import { getDay } from "date-fns/esm";
@@ -42,7 +41,7 @@ export default function BookingModal({ BookingDetails }) {
   const [guests, setGuests] = React.useState(2);
   const [rooms, setRooms] = React.useState(1);
   const [cost, setCost] = React.useState(0);
-  sessionStorage.setItem("cost", 0);
+  // sessionStorage.setItem("cost", 0);
   const [roomCost, setRoomCost] = React.useState(0);
   const [roomtype, setRoomType] = React.useState("cd");
   const [mapping, setMapping] = React.useState("");
@@ -51,6 +50,7 @@ export default function BookingModal({ BookingDetails }) {
   const [swimming, setSwimming] = React.useState(false);
   const [parking, setParking] = React.useState(false);
   const [meals, setMeals] = React.useState(false);
+  const navigate = useNavigate();
 
   // const handleCostChange = (event, newCost) => {
   //     setCost(newCost);
@@ -72,8 +72,14 @@ export default function BookingModal({ BookingDetails }) {
   };
 
   const getDays = async () => {
-    await setDays(getDate(endDate) - getDate(startDate));
-    sessionStorage.setItem("days", getDate(endDate) - getDate(startDate));
+    var Difference_In_Time = await endDate.getTime() - startDate.getTime();
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = await Difference_In_Time / (1000 * 3600 * 24);
+    console.log("days in",Math.trunc(Difference_In_Days));
+    await setDays(Math.trunc(Difference_In_Days))
+    // await setDays(getDate(endDate) - getDate(startDate));
+    sessionStorage.setItem("days",Math.trunc(Difference_In_Days));
+    // sessionStorage.setItem("days", getDate(endDate) - getDate(startDate));
     // console.log(days)
   };
   const addRooms = async () => {
@@ -143,7 +149,7 @@ export default function BookingModal({ BookingDetails }) {
       Customer_id: sessionStorage.getItem("userid"), //BookingDetails.cust_id,
       Hotel_name: BookingDetails.Hotel_name,
       Customer_name: sessionStorage.getItem("username"), //BookingDetails.cust_name,
-      Booking_period_days: getDate(endDate) - getDate(startDate),
+      Booking_period_days: sessionStorage.getItem("days"),
       Booking_start_date: startDate,
       Booking_end_date: endDate,
       Total_cost: cost,
@@ -151,18 +157,33 @@ export default function BookingModal({ BookingDetails }) {
       Hotel_image: BookingDetails.Profile_image,
       Amenities: amenities, //BookingDetails.Amenities
     };
-    console.log(getDate(startDate) - getDate(endDate));
     console.log(data);
-    axios
-      .post(`${backendServer}/api/booking/newBooking`, data)
-      .then((result) => {
-        console.log(result);
-        if (result.status === 200) {
-          // return "Success"
-          alert("Booking Confirmed");
-          history("/Bookings");
-        }
-      });
+    if(sessionStorage.getItem("type")==="Modify"){
+      data["_id"] = BookingDetails.booking_id;
+      axios
+        .post(`${backendServer}/api/booking/updateBooking`, data)
+        .then((result) => {
+          console.log(result);
+          if (result.status === 200) {
+            // return "Success"
+            alert("Booking updated");
+            sessionStorage.removeItem("type");
+            history("/Dashboard");
+          }
+        });
+    }
+    else{
+      axios
+        .post(`${backendServer}/api/booking/newBooking`, data)
+        .then((result) => {
+          console.log(result);
+          if (result.status === 200) {
+            // return "Success"
+            alert("Booking Confirmed");
+            history("/Bookings");
+          }
+        });
+      }
   };
 
   useEffect(() => {

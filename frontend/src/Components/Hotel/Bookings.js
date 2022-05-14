@@ -14,6 +14,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import { Modal} from "@mui/material";
+import { ListItemAvatar } from '@mui/material';
 import Box from "@mui/material/Box";
 import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
@@ -38,6 +39,7 @@ const Bookings = () => {
     const [initialItems, setInitialItems] = React.useState([]);
     const [items, setItems] = React.useState(initialItems);
     const [deleteFlag, setDeleteFlag] = React.useState(false);
+    const [hotelDetails, setHotelDetails] = React.useState({});
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -56,6 +58,16 @@ const Bookings = () => {
         }
         settingUpData();
     },[deleteFlag]);
+
+    async function Modify(hotel_id, id){
+        console.log("id: ",id);
+        var details = await axios.get(`${backendServer}/api/hotels/getHotelById?id=${hotel_id}`)
+        details.data[0]["booking_id"] = await id;
+        console.log("details ",details.data);
+        await setHotelDetails(details.data);
+        await sessionStorage.setItem("type","Modify");
+        setOpen(true);
+    }
 
     async function DeleteBooking(id){
         // let data ={
@@ -102,13 +114,19 @@ return(
                         <img
                             src={item.image}
                             alt={item.Hotel_name}
+                            height='100%'
+                            width='100%'
                         />}
 
                         {sessionStorage.getItem("usertype")==="Hotel"&&
-                        <img
-                            src="/"
-                            alt={item.Customer_name}
-                        />}
+                            <ListItemAvatar>
+                                <Avatar alt={item.Customer_name} src="/static/images/avatar/2.jpg" />
+                            </ListItemAvatar>
+                        // <img
+                        //     src="/"
+                        //     alt={item.Customer_name}
+                        // />
+                        }
                         {/* <ListItemAvatar>
                             <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
                         </ListItemAvatar> */}
@@ -167,7 +185,7 @@ return(
                         </TableCell>
                         {sessionStorage.getItem("usertype")==="Customer" &&
                         <TableCell style={{width:'35%'}} align="right">
-                                <Button variant="contained" color="primary" onClick={handleOpen}>Modify</Button> &nbsp; &nbsp;
+                                <Button variant="contained" color="primary" onClick={()=>{Modify(item.Hotel_id,item._id)}}>Modify</Button> &nbsp; &nbsp;
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
@@ -175,13 +193,13 @@ return(
                                     aria-describedby="modal-modal-description"
                                 >
                                     <Box sx={style}>
-                                        <BookingModal BookingDetails={item} />
+                                        <BookingModal BookingDetails={hotelDetails[0]} />
                                     </Box>
                                 </Modal>
 
                                 <Button variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</Button>
                         </TableCell>
-}
+                        }
 
                         </TableRow>
                     </TableBody>

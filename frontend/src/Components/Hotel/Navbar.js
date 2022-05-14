@@ -104,14 +104,15 @@ const Navbar = ({onTextChange, search}) => {
     <AppBar position="relative">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
+        <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="150" height="60" />
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             QuickFix
-          </Typography>
+          </Typography> */}
 
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
