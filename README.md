@@ -133,7 +133,7 @@
 
   <li> Modify booking page <br>
   
-  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464812-f4882442-5836-4858-b119-b6e0ace0ddd5.png"><br>
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168489628-ff993602-053d-4656-a060-af18f5aa074f.png"> <br>
 
 
   <li>Hotel owner dashboard <br>
