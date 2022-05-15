@@ -68,7 +68,11 @@
  
  ![Blank diagram (2)](https://user-images.githubusercontent.com/38569308/168454888-f839f462-0520-46ed-8e10-ec36f7a00f0d.png)
 
+  <h2> Component Diagram</h2> 
+    
+ ![Untitled (Facebook Post) (1)](https://user-images.githubusercontent.com/38569308/168467325-f75d056c-60e5-4e6b-a42f-6644cdd76ccd.png)
 
+    
   
   <h2> Deployment Diagram</h2> 
   
