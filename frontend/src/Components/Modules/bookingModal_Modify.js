@@ -204,11 +204,9 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
     calculatePrice();
   }, [roomtype, rooms, guests]);
   
-const ColorButton = styled(Button)(({ theme }) => ({
-    
-    backgroundColor: 'black',
+
   
-}));
+
 
   return (
     <div>
@@ -315,25 +313,25 @@ const ColorButton = styled(Button)(({ theme }) => ({
                   </FormControl>
                 </div>
                 Number of guests: {guests}
-                <ColorButton variant="outlined" onClick={addGuests}>
+                <Button variant="outlined" onClick={addGuests}>
                   +
-                </ColorButton>
-                <ColorButton variant="outlined" onClick={subGuests}>
+                </Button>
+                <Button variant="outlined" onClick={subGuests}>
                   -
-                </ColorButton>
+                </Button>
                 <br />
                 Number of rooms: {rooms}
-                <ColorButton variant="outlined" onClick={addRooms}>
+                <Button variant="outlined" onClick={addRooms}>
                   +
-                </ColorButton>
-                <ColorButton variant="outlined" onClick={subRooms}>
+                </Button>
+                <Button variant="outlined" onClick={subRooms}>
                   -
-                </ColorButton>
+                </Button>
                 <br />
                 <Stack>
-                  <ColorButton variant="contained" onClick={createBooking}>
+                  <Button variant="contained" onClick={createBooking}>
                     Confirm
-                  </ColorButton>
+                  </Button>
                   <br />
                   {/* <Button variant="outlined" >Modify</Button>
                                     <br/> */}

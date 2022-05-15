@@ -1,4 +1,4 @@
-const backendServer = "http://localhost:8000";
-const frontendServer = "http://localhost:3000";
+const backendServer = "http://18.217.83.35:8000";
+const frontendServer = "http://18.217.83.35:3000";
 
 export default backendServer;
