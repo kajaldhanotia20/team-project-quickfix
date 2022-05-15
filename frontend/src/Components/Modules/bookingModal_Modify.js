@@ -22,7 +22,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Navigate } from "react-router";
 import backendServer from "../../webConfig";
-import { getDate } from "date-fns";
+import { getDate, getTime } from "date-fns";
 import { getDay } from "date-fns/esm";
 import { styled } from "@material-ui/core";
 const axios = require("axios");
@@ -76,7 +76,11 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
 
 
   const getDays = async () => {
-    var Difference_In_Time = await endDate.getTime() - startDate.getTime();
+    console.log(typeof(endDate))
+
+    var abc = Date.parse(endDate)
+    console.log(abc.getTime())
+    var Difference_In_Time = await new Date.parse(endDate).getTime() - startDate.getTime();
     // To calculate the no. of days between two dates
     var Difference_In_Days = await Difference_In_Time / (1000 * 3600 * 24);
     console.log("days in",Math.trunc(Difference_In_Days));
@@ -89,7 +93,7 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
   };
   const addRooms = async () => {
     await setRooms(rooms + 1);
-    await getDays();
+    // await getDays();
     // await calculatePrice();
   };
 
@@ -100,6 +104,7 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
   };
 
   async function calculatePrice() {
+    console.log(endDate, startDate)
     await getDays();
     var sessionDays = await sessionStorage.getItem("days");
     console.log(sessionDays, mapping[roomtype], roomtype, guests, rooms);
@@ -145,7 +150,7 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
     console.log(booking,HotelDetails.Room_type_rate_mapping);
     setMapping(HotelDetails.Room_type_rate_mapping);
     console.log(mapping);
-  }, [BookingDetails, roomtype, endDate, rooms]);
+  }, [BookingDetails]);
 
 
   const createBooking = () => {

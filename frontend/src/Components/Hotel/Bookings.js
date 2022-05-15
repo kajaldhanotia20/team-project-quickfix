@@ -20,7 +20,11 @@ import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
 import backendServer from '../../webConfig';
 import BookingModalModify from "../Modules/bookingModal_Modify";
+<<<<<<< HEAD
 import { styled } from '@mui/material/styles';
+=======
+import Profileuser from '../../profile-user.png';
+>>>>>>> 347ccffba80934e0cfd2f66180a7d8c799793ab5
 
 const style = {
     position: 'absolute',
@@ -114,28 +118,30 @@ return(
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                     <TableBody>
                         <TableRow>
-                        <TableCell style={{width:'30%'}}>
+                        
                         {sessionStorage.getItem("usertype")==="Customer"&&
+                        <TableCell style={{width:'30%'}}>
                         <img
                             src={item.image}
                             alt={item.Hotel_name}
                             height='100%'
                             width='100%'
-                        />}
+                        />
+                        </TableCell>
+                        }
 
                         {sessionStorage.getItem("usertype")==="Hotel"&&
-                            <ListItemAvatar>
-                                <Avatar alt={item.Customer_name} src="/static/images/avatar/2.jpg" />
-                            </ListItemAvatar>
-                        // <img
-                        //     src="/"
-                        //     alt={item.Customer_name}
-                        // />
-                        }
-                        {/* <ListItemAvatar>
-                            <Avatar alt={item.Hotel_name} src="/static/images/avatar/2.jpg" />
-                        </ListItemAvatar> */}
+                        <TableCell style={{width:'5%'}}>
+                            &nbsp;&nbsp;
+                            <img
+                            src={Profileuser}
+                            alt={item.Customer_name}
+                            height='70%'
+                            width='60%'
+                        />
                         </TableCell>
+                        }
+                        
                         <TableCell style={{width:'35%'}} align="left">
                             <TableRow>
                                 {sessionStorage.getItem("usertype")==="Customer"&&
@@ -170,7 +176,9 @@ return(
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            Rate per day: {item.Rate_per_day}
+                                            Guests: {item.Guests}<br/>
+                                            Rooms: {item.Rooms}<br/>
+                                            Room Type: {item.RoomType}
                                         </Typography> <br/>
                                         <b>Total Cost: ${item.Total_cost}</b>
                                         </React.Fragment>
@@ -182,7 +190,7 @@ return(
                             <TableRow >
                                 <td style={{width:'50%'}}>
                                     <b>Booking Start Date</b><br/>{getDate(item.Booking_start_date)}<br/>
-                                </td>
+                                </td> &nbsp;
                                 <td style={{width:'50%'}}>
                                     <b>Booking End Date</b><br/>{getDate(item.Booking_end_date)} <br/>
                                 </td>
