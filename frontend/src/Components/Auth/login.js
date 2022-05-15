@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
 import { styled } from '@mui/material/styles';
+import Logo from '../../logo.png'
 
 const useStyles= makeStyles({
     button1: {
@@ -47,14 +48,20 @@ export default function Login() {
             sessionStorage.setItem("usertype",data[0].User_type);
             sessionStorage.setItem("userid",data[0].id);
             setError(data.message)
-            history('/dashboard');
+    
+            
+                 history('/dashboard');
         })
     }
 
 
     const Classes = useStyles()
     return(
+
+        <header style={ HeaderStyle }>
+        <div classname="logo"><center><img src={Logo} alt="Logo"/> </center> 
         <Container>
+    
         <div>
             
         <Grid
@@ -63,12 +70,9 @@ export default function Login() {
             direction="column"
             alignItems="center"
             justify="center"
-            style={{ minHeight: '100vh' }}
+            style={{ minHeight: '60vh' }}
             >
-            <Grid item xs={3}>
-            <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="120" />
-            <br/>
-            </Grid>  
+           
             <Grid item xs={3}> 
             <Typography variant="h4">Welcome back</Typography>
             </Grid>
@@ -104,5 +108,18 @@ export default function Login() {
                         
         </div>
         </Container>
+        </div>
+        </header>
+       
     )
+}
+
+const HeaderStyle = {
+    width: "100%",
+    height: "100vh",
+    background: `url(https://images.pexels.com/photos/4940716/pexels-photo-4940716.jpeg)`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    
 }

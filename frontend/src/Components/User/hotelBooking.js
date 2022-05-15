@@ -15,7 +15,7 @@ export default function Booking() {
         <header style={ HeaderStyle }>
            
            <div classname="logo"><center><img src={Logo} alt="Logo"/> </center> 
-            <p className="sub-title">One-stop hotel booking platform</p>
+            <p className="sub-title">One-stop reservation platform</p>
            
            
             <div className="sub-title">
@@ -37,7 +37,7 @@ export default function Booking() {
 const HeaderStyle = {
     width: "100%",
     height: "100vh",
-    background: `url(https://images.pexels.com/photos/2029663/pexels-photo-2029663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
+    background: `url(https://images.pexels.com/photos/3201758/pexels-photo-3201758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
     //backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover"
