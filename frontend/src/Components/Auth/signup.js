@@ -17,7 +17,8 @@ import  {useState} from "react";
 import {Navigate} from 'react-router';
 import { color } from "@mui/system";
 import { styled } from '@mui/material/styles';
-
+import axios from "axios";
+import backendServer from '../../webConfig';
 import Logo from '../../logo.png'
 
 
@@ -52,7 +53,7 @@ export default function Signup() {
 
 
     function signup(){
-        fetch(`http://localhost:8000/api/UserRoute/signup`,{
+        fetch(`${backendServer}/api/UserRoute/signup`,{
             method:'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify({

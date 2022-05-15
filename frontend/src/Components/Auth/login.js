@@ -10,7 +10,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import  {useState} from "react";
 import { styled } from '@mui/material/styles';
 import Logo from '../../logo.png'
-
+import axios from "axios";
+import backendServer from '../../webConfig';
 
 
 const useStyles= makeStyles({
@@ -35,7 +36,7 @@ export default function Login() {
     // dhruvi@gmail.com
     // pas:12345
     async function login(){
-        fetch(`http://localhost:8000/api/UserRoute/login`,{
+        fetch(`${backendServer}/api/UserRoute/login`,{
             method:'POST',
             headers:{"Content-type": "application/json"},
             body: JSON.stringify({
