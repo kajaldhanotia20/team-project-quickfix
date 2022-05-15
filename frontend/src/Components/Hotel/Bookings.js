@@ -20,6 +20,7 @@ import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
 import backendServer from '../../webConfig';
 import BookingModalModify from "../Modules/bookingModal_Modify";
+import { styled } from '@mui/material/styles';
 
 const style = {
     position: 'absolute',
@@ -95,6 +96,11 @@ const Bookings = () => {
         // return new_date.getMonth() +" - "+ new_date.getDate() +" - "+new_date.getFullYear()
         return new_date.toDateString()
     }
+    const ColorButton = styled(Button)(({ theme }) => ({
+    
+        backgroundColor: 'black',
+      
+    }));
 
 return(
     <div>
@@ -184,7 +190,7 @@ return(
                         </TableCell>
                         {sessionStorage.getItem("usertype")==="Customer" &&
                         <TableCell style={{width:'35%'}} align="right">
-                                <Button variant="contained" color="primary" onClick={()=>{Modify(item)}}>Modify</Button> &nbsp; &nbsp;
+                                <ColorButton variant="contained" color="primary" onClick={()=>{Modify(item)}}>Modify</ColorButton> &nbsp; &nbsp;
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
@@ -196,7 +202,7 @@ return(
                                     </Box>
                                 </Modal>
 
-                                <Button variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</Button>
+                                <ColorButton variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</ColorButton>
                         </TableCell>
                         }
 

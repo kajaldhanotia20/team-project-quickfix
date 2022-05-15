@@ -24,7 +24,9 @@ import { Navigate } from "react-router";
 import backendServer from "../../webConfig";
 import { getDate } from "date-fns";
 import { getDay } from "date-fns/esm";
+import { styled } from "@material-ui/core";
 const axios = require("axios");
+
 
 function valuetext(value) {
   return `${value}$`;
@@ -196,6 +198,12 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
   useEffect(() => {
     calculatePrice();
   }, [roomtype, rooms, guests]);
+  
+const ColorButton = styled(Button)(({ theme }) => ({
+    
+    backgroundColor: 'black',
+  
+}));
 
   return (
     <div>
@@ -302,25 +310,25 @@ export default function BookingModalModify({ BookingDetails, HotelDetails }) {
                   </FormControl>
                 </div>
                 Number of guests: {guests}
-                <Button variant="outlined" onClick={addGuests}>
+                <ColorButton variant="outlined" onClick={addGuests}>
                   +
-                </Button>
-                <Button variant="outlined" onClick={subGuests}>
+                </ColorButton>
+                <ColorButton variant="outlined" onClick={subGuests}>
                   -
-                </Button>
+                </ColorButton>
                 <br />
                 Number of rooms: {rooms}
-                <Button variant="outlined" onClick={addRooms}>
+                <ColorButton variant="outlined" onClick={addRooms}>
                   +
-                </Button>
-                <Button variant="outlined" onClick={subRooms}>
+                </ColorButton>
+                <ColorButton variant="outlined" onClick={subRooms}>
                   -
-                </Button>
+                </ColorButton>
                 <br />
                 <Stack>
-                  <Button variant="outlined" onClick={createBooking}>
+                  <ColorButton variant="contained" onClick={createBooking}>
                     Confirm
-                  </Button>
+                  </ColorButton>
                   <br />
                   {/* <Button variant="outlined" >Modify</Button>
                                     <br/> */}

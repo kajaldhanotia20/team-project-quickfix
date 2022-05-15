@@ -12,6 +12,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import axios from "axios";
 import backendServer from "../../webConfig";
+import { styled } from '@mui/material/styles';
 
 export default function Profile() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -130,6 +131,13 @@ export default function Profile() {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
+  const ColorButton = styled(Button)(({ theme }) => ({
+    
+    backgroundColor: 'black',
+  
+}));
+
 
   return (
     <div>
@@ -346,25 +354,25 @@ export default function Profile() {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <Button
+                      <ColorButton
                         variant="contained"
                         fullWidth
                         onClick={singleFileUploadHandler}
                       >
                         Upload Image
                         <input type="file" hidden />
-                      </Button>
+                      </ColorButton>
                     </Grid>
 
                     <Grid item xs={12}>
-                      <Button
+                      <ColorButton
                         onClick={handleSubmit}
                         fullWidth
                         variant="contained"
                         // sx={{ mt: 3, mb: 2 }}
                       >
                         Save
-                      </Button>
+                      </ColorButton>
                     </Grid>
 
                     <Grid container justifyContent="flex-end"></Grid>
