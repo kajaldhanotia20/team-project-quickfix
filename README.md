@@ -52,10 +52,11 @@
 <!-- <li>can change the staying period of a customer -->
 <li>can add more features to each room
 <li>can logout of the admin module
-<!--     <li>can add rooms in different location of the hotel chain </ul> -->
+<!--     <li>can add rooms in different location of the hotel chain  --></ul>
    
   
-  <h2> Task Divisions</h2> 
+
+<h2> Task Divisions</h2> 
  <ul>
    <li>Signup and Login Component - Kajal Dhanotia
    <li>Book, Update and Modify bookings- Kinjal Dhanani
@@ -65,7 +66,8 @@
   
   <h2> Use-Case Diagram</h2> 
  
-  ![Blank diagram (1)](https://user-images.githubusercontent.com/38569308/168416504-80aae1a5-acd7-48d9-8285-f078b30d8bd2.png)
+ ![Blank diagram (2)](https://user-images.githubusercontent.com/38569308/168454888-f839f462-0520-46ed-8e10-ec36f7a00f0d.png)
+
 
   
   <h2> Deployment Diagram</h2> 
