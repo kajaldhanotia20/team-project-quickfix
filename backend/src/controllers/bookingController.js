@@ -1,6 +1,7 @@
 const ReservationsModel = require("../models/Reservations");
 const mongoose = require('mongoose');
 const HotelsModel = require("../models/Hotels");
+const Customer_Details = require("../models/Customer_Details");
 
 
 exports.createBooking = async function (req, res) {
@@ -34,14 +35,25 @@ exports.createBooking = async function (req, res) {
                     .status(500)
                     .send(JSON.stringify({message: 'Something went wrong!'}));
             } else {
-
+                console.log("here!")
+                var value = await Customer_Details.find({_id:data.Customer_id},{});
+                console.log("details: ",value, value[0].Customer_Loyalty);
+                var updateScore = await Customer_Details.findOneAndUpdate(
+                    {
+                        _id: data.Customer_id,
+                    },
+                    {
+                        Customer_Loyalty:Number(value[0].Customer_Loyalty)+1,
+                        Rewards:Number(value[0].Rewards)+Number(data.Total_cost)
+                    }
+                );
                 res.status(200).setHeader("Content-Type", "text/plain").end(JSON.stringify(data));
 
             }
 
     }catch(err){
     console.error("Error in createJobPostings : " + err);
-    res(null,{ response_code: 500, response_data: "Something went wrong!", err: err});
+    res.send(null,{ response_code: 500, response_data: "Something went wrong!", err: err});
 }
 };
 
@@ -50,16 +62,28 @@ exports.deleteBooking = async function (req, res) {
     // console.log(data)
     // const id= data.id;
     // console.log(id);
-    console.log(req.query.id)
+    console.log(req.query)
     let id=req.query.id;
     try{
-        ReservationsModel.findByIdAndDelete(id,function (err, docs) {
+        ReservationsModel.findByIdAndDelete(id, async function (err, docs) {
             if (err) {
                 console.error("Error in delete booking : " + err);
                 res
                     .status(500)
                     .send(JSON.stringify({message: 'Something went wrong!'}));
             } else {
+                var value = await Customer_Details.find({_id:req.query.customer_id},{});
+                console.log("delete details: ",value, value[0].Customer_Loyalty);
+                var updateScore = await Customer_Details.findOneAndUpdate(
+                    {
+                        _id: req.query.customer_id,
+                    },
+                    {
+                        Customer_Loyalty:Number(value[0].Customer_Loyalty)-1,
+                        Rewards: Number(value[0].Rewards)-Number(req.query.Total_cost)
+                    }
+                );
+
                 res.status(200).setHeader("Content-Type", "text/plain").end(JSON.stringify(id));
             }
         });

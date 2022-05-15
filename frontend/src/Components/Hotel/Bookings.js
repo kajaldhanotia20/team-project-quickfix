@@ -70,12 +70,12 @@ const Bookings = () => {
         setOpen(true);
     }
 
-    async function DeleteBooking(id){
+    async function DeleteBooking(id,customer_id,total_cost){
         // let data ={
         //     id: "4"
         // }
-        console.log(id)
-        var res = await axios.post(`${backendServer}/api/booking/deleteBooking?id=${id}`);
+        console.log(id, customer_id,total_cost);
+        var res = await axios.post(`${backendServer}/api/booking/deleteBooking?id=${id}&customer_id=${customer_id}&Total_cost=${total_cost}`);
         setDeleteFlag(true);
         console.log(res);
         
@@ -207,7 +207,7 @@ return(
                                     </Box>
                                 </Modal>
 
-                                <ColorButton variant="contained" color="warning" onClick={()=>DeleteBooking(item._id)}>Cancel</ColorButton>
+                                <ColorButton variant="contained" color="warning" onClick={()=>DeleteBooking(item._id, item.Customer_id, item.Total_cost)}>Cancel</ColorButton>
                         </TableCell>
                         }
 

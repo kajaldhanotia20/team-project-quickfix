@@ -146,22 +146,22 @@ export default function BookingModal({ BookingDetails }) {
   }, [BookingDetails, roomtype, endDate, rooms]);
 
 
-  const createBooking = () => {
+  const createBooking = async() => {
     console.log(booking);
     let amenities = [];
     if (Breakfast == true) {
-      amenities.push("Daily Continental Breakfast");
+      await amenities.push("Daily Continental Breakfast");
     }
     if (swimming == true) {
-      amenities.push("Access to Swimming Pool/Jacuzzi");
+      await amenities.push("Access to Swimming Pool/Jacuzzi");
     }
     if (fitnessRoom == true) {
-      amenities.push("Access to fitness room");
+      await amenities.push("Access to fitness room");
     }
     if (meals == true) {
-      amenities.push("All meals included (Breakfast, Lunch, Dinner)");
+      await amenities.push("All meals included (Breakfast, Lunch, Dinner)");
     }
-    let data = {
+    let data = await {
       Hotel_id: BookingDetails._id,
       Customer_id: sessionStorage.getItem("userid"), //BookingDetails.cust_id,
       Hotel_name: BookingDetails.Hotel_name,
@@ -178,7 +178,7 @@ export default function BookingModal({ BookingDetails }) {
       Amenities: amenities, //BookingDetails.Amenities
     };
     console.log("here: ",data);
-      axios
+      await axios
         .post(`${backendServer}/api/booking/newBooking`, data)
         .then((result) => {
           console.log(result);
