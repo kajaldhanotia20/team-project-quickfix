@@ -123,9 +123,15 @@
   <li>Booking history page <br>
   
   <img width="1438" alt="image" src="https://user-images.githubusercontent.com/38569308/168464790-8b0c0e77-f997-410b-ae6e-e8bef4c94e8b.png"><br>
+    
+  
+  <li> User profile page <br>
+    
+   
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168489530-cc6ece31-83e8-4237-b60b-fd2110d50f26.png"> <br>
 
 
-  <li>Modify booking page <br>
+  <li> Modify booking page <br>
   
   <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464812-f4882442-5836-4858-b119-b6e0ace0ddd5.png"><br>
 
@@ -133,6 +139,11 @@
   <li>Hotel owner dashboard <br>
   
   <img width="1282" alt="image" src="https://user-images.githubusercontent.com/38569308/168464836-6da4aa98-fa35-460a-88a9-844cfc48863c.png"><br>
+    
+    
+  <li>Hotel owner bookings view <br>
+      
+  <img width="1438" alt="image" src="https://user-images.githubusercontent.com/38569308/168489557-e52575d1-59f6-4059-b33d-69d5142c11d0.png"> <br>
 
 
   <li>AWS Instance where application is deployed <br>
