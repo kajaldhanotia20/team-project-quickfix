@@ -85,4 +85,64 @@
   </ul>
     
     
+<h2> Screenshots </h2>
+
+<ul>
+  
+   
+ 
+  <li>Landing Page  <br>
+   
+   <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464657-dc713304-0008-443e-ab66-ffd876501ff5.png"><br>
+
+
+  <li>Signup Page <br>
+  
+  <img width="1438" alt="image" src="https://user-images.githubusercontent.com/38569308/168464683-20f2b9e4-3923-4dfa-9ec0-b4018d80175f.png"><br>
+
+
+  <li>Login Page<br>
+  
+  <img width="1437" alt="image" src="https://user-images.githubusercontent.com/38569308/168464708-8830db35-905f-46ff-ba57-773ec8d840b2.png"><br>
+
+
+  <li> User Dashboard <br>
+  
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464735-f40ab6b4-a3fc-4efc-910a-0aac533b722b.png"><br>
+
+
+  <li>Hotel booking page <br>
+  
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464765-9146b93f-0f3e-4781-88cf-2daaec9d2fe2.png"><br>
+
+
+  <li>Booking history page <br>
+  
+  <img width="1438" alt="image" src="https://user-images.githubusercontent.com/38569308/168464790-8b0c0e77-f997-410b-ae6e-e8bef4c94e8b.png"><br>
+
+
+  <li>Modify booking page <br>
+  
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464812-f4882442-5836-4858-b119-b6e0ace0ddd5.png"><br>
+
+
+  <li>Hotel owner dashboard <br>
+  
+  <img width="1282" alt="image" src="https://user-images.githubusercontent.com/38569308/168464836-6da4aa98-fa35-460a-88a9-844cfc48863c.png"><br>
+
+
+  <li>AWS Instance where application is deployed <br>
+    
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/38569308/168464426-04f5e298-1a53-4710-bd2f-f7f7d5971ca5.png"><br>
+    
+
+  <li>Load balancer attached to the application instance <br>
+  
+   <img width="1438" alt="image" src="https://user-images.githubusercontent.com/38569308/168464473-2f59ef26-e2fa-44ac-8909-79ffde924e76.png"><br>
+
+<li>Auto-scaling group  <br>
+  
+   <img width="1432" alt="image" src="https://user-images.githubusercontent.com/38569308/168464515-5daef380-9164-4650-8c37-648614461729.png"><br>
+
+    </ul>
   
