@@ -20,11 +20,8 @@ import BookingModal from '../Modules/bookingModal';
 import axios from "axios";
 import backendServer from '../../webConfig';
 import BookingModalModify from "../Modules/bookingModal_Modify";
-<<<<<<< HEAD
 import { styled } from '@mui/material/styles';
-=======
 import Profileuser from '../../profile-user.png';
->>>>>>> 347ccffba80934e0cfd2f66180a7d8c799793ab5
 
 const style = {
     position: 'absolute',
