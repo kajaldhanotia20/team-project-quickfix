@@ -16,8 +16,10 @@ import PropTypes from "prop-types";
 import  {useState} from "react";
 import {Navigate} from 'react-router';
 import { color } from "@mui/system";
-
 import { styled } from '@mui/material/styles';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
+import Logo from '../../logo.png'
 
 
 const useStyles= makeStyles({
@@ -36,6 +38,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
   }));
 
 
+
 export default function Signup() {
     const Classes = useStyles()
     const [name, setName]= useState('')
@@ -46,6 +49,7 @@ export default function Signup() {
     const [type, setType]=useState('Customer');
     const history = useNavigate();
     let redirectvar =''
+
 
 
     function signup(){
@@ -72,7 +76,8 @@ export default function Signup() {
     
     return(
       
-       
+        <header style={ HeaderStyle }>
+            <div classname="logo"><center><img src={Logo} alt="Logo"/> </center> 
         <Container>
             {redirectvar}
         <div>
@@ -84,10 +89,7 @@ export default function Signup() {
             justify="center"
             style={{ minHeight: '100vh' }}
             >
-            <Grid item xs={3}>
-            <img src="https://i.pinimg.com/originals/c8/88/89/c8888942b5d00fc30ad2aa19fd45280b.gif" alt='' width="300" height="120" />
-            
-            </Grid>  
+             
             <Grid item xs={3}> 
             <Typography variant="h4">Let's get started.</Typography>
             <Typography color="red">{error}</Typography>
@@ -95,14 +97,19 @@ export default function Signup() {
             <Grid item xs={3}> 
             {/* <Typography variant="h6">Enter your phone number</Typography> */}
             </Grid>
-
+           
             
             <Box sx={{width:500}} >
              <Grid item > 
-             <TextField  required type="text" fullWidth id="outlined-basic" label="Name" 
+
+             <TextField required  type="text" fullWidth id="outlined-basic"
+             label="Name" 
+            
              onChange={(e)=>{setName(e.target.value) } } 
-             variant="outlined" />
+             />
+
             <br/><br/>
+           
             <TextField required type="email" fullWidth id="outlined-basic" label="Email ID"
             onChange={(e)=>{setEmail(e.target.value)}}
              variant="outlined" />
@@ -132,8 +139,11 @@ export default function Signup() {
     
                 </RadioGroup>
             </FormControl>
-        </Box>
 
+         
+        </Box>
+       
+        
 <br></br>
 <br></br>
             <Grid item>
@@ -142,7 +152,7 @@ export default function Signup() {
                 Sign Up
             </ColorButton>
             </Grid>
-           
+         
             <Link to='/login'>
             <Typography variant='overline'>
                 Already a user? Sign in.
@@ -154,8 +164,18 @@ export default function Signup() {
                
         </div>
         </Container>
+        </div>
+        </header>
        
     )
     }
 
-    
+    const HeaderStyle = {
+        width: "100%",
+        height: "150vh",
+        background: `url(https://images.pexels.com/photos/545034/pexels-photo-545034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        
+    }
