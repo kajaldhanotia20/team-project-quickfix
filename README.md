@@ -58,10 +58,10 @@
 
 <h2> Task Divisions</h2> 
  <ul>
-   <li>Signup and Login Component - Kajal Dhanotia
-   <li>Book, Update and Modify bookings- Kinjal Dhanani
-   <li>Hotel Dashboard and Booking History- Dhrupa Patel
-   <li> User Profile,Hotel Profile and Hotel Details - Dhruvi Shah
+   <li>Signup and Login Component, Load Balancer and Autoscaling group - Kajal Dhanotia
+   <li>Book, Modify and Cancel bookings, Integration of User related Components- Kinjal Dhanani
+   <li>Dashboard and Booking History for User and Hotel users group, Deployment on EC2instance- Dhrupa Patel
+   <li>User Profile, Hotel Profile and Hotel Details, Integration of Hotel related Components - Dhruvi Shah
     </ul>
   
   <h2> Use-Case Diagram</h2> 
